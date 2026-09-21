@@ -451,11 +451,115 @@
   .foot-links a{color:var(--text-dim); text-decoration:none; font-size:.85rem;}
   .foot-links a:hover{color:var(--text);}
 
+  /* ---------- ambient glow background ---------- */
+  .glow-orb{
+    position:fixed; z-index:0; pointer-events:none; border-radius:50%;
+    filter:blur(90px); opacity:.28; will-change:transform;
+  }
+  .glow-1{
+    top:-220px; left:-160px; width:560px; height:560px;
+    background:radial-gradient(circle, var(--accent) 0%, transparent 70%);
+  }
+  .glow-2{
+    top:280px; right:-220px; width:620px; height:620px;
+    background:radial-gradient(circle, var(--accent-2) 0%, transparent 70%);
+  }
+  .glow-3{
+    bottom:-260px; left:35%; width:520px; height:520px;
+    background:radial-gradient(circle, var(--accent) 0%, transparent 72%);
+    opacity:.16;
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .glow-1{animation:drift1 22s ease-in-out infinite alternate;}
+    .glow-2{animation:drift2 26s ease-in-out infinite alternate;}
+    .glow-3{animation:drift1 30s ease-in-out infinite alternate-reverse;}
+  }
+  @keyframes drift1{ 0%{transform:translate(0,0);} 100%{transform:translate(40px,60px);} }
+  @keyframes drift2{ 0%{transform:translate(0,0);} 100%{transform:translate(-50px,40px);} }
+  @media (max-width:640px){ .glow-orb{opacity:.16; filter:blur(60px);} }
+
+  /* ---------- nav active link + subtle interactivity polish ---------- */
+  nav.links a{position:relative; padding:4px 0;}
+  nav.links a::after{
+    content:''; position:absolute; left:0; right:100%; bottom:-2px; height:2px;
+    background:linear-gradient(90deg, var(--accent), var(--accent-2));
+    border-radius:2px; transition:right .25s ease;
+  }
+  nav.links a:hover::after{right:0;}
+  nav.links a.active{color:var(--text);}
+  nav.links a.active::after{right:0;}
+  .brand-mark{box-shadow:0 4px 18px -4px color-mix(in srgb, var(--accent) 70%, transparent);}
+  header.nav{transition:box-shadow .25s ease;}
+  header.nav.scrolled{box-shadow:0 8px 30px -20px rgba(0,0,0,.5);}
+
+  /* ---------- refined buttons ---------- */
+  .btn-primary{position:relative; box-shadow:0 8px 24px -10px color-mix(in srgb, var(--accent) 65%, transparent);}
+  .btn-primary:hover{box-shadow:0 10px 30px -8px color-mix(in srgb, var(--accent) 80%, transparent); transform:translateY(-1px);}
+  .btn-ghost:hover{background:color-mix(in srgb, var(--text) 5%, transparent); transform:translateY(-1px);}
+  h1.hero-title .accent{
+    background:linear-gradient(100deg, var(--accent), var(--accent-2));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+
+  /* ---------- reveal-on-scroll ---------- */
+  @media (prefers-reduced-motion:no-preference){
+    .reveal{opacity:0; transform:translateY(18px); transition:opacity .65s cubic-bezier(.2,.7,.2,1), transform .65s cubic-bezier(.2,.7,.2,1);}
+    .reveal.in-view{opacity:1; transform:translateY(0);}
+  }
+
+  /* ---------- servers / subscription section ---------- */
+  .sub-card{
+    background:linear-gradient(135deg, var(--surface), var(--surface-2));
+    border:1px solid var(--border); border-radius:var(--radius-l);
+    padding:30px; display:grid; grid-template-columns:1fr auto; gap:30px; align-items:center;
+    position:relative; overflow:hidden;
+  }
+  .sub-card::before{
+    content:''; position:absolute; inset:0; z-index:0; pointer-events:none;
+    background:radial-gradient(400px 200px at 0% 0%, color-mix(in srgb, var(--accent) 10%, transparent), transparent);
+  }
+  .sub-card > *{position:relative; z-index:1;}
+  .sub-label{font-family:var(--font-mono); color:var(--accent); font-size:.78rem; margin-bottom:10px; display:flex; align-items:center; gap:8px;}
+  .sub-label .status-dot{width:7px; height:7px;}
+  .sub-link-box{
+    display:flex; align-items:center; gap:10px; background:var(--bg); border:1px solid var(--border);
+    border-radius:var(--radius-s); padding:15px 16px; font-family:var(--font-mono); font-size:.83rem;
+    color:var(--accent); overflow-x:auto; -webkit-overflow-scrolling:touch; white-space:nowrap; margin-bottom:16px;
+  }
+  .sub-actions{display:flex; gap:12px; flex-wrap:wrap;}
+  .sub-copy-btn{position:relative;}
+  .sub-copy-btn .copied-label{
+    display:none; position:absolute; top:-30px; left:50%; transform:translateX(-50%);
+    background:var(--ok); color:#06180E; font-size:.72rem; font-weight:700; padding:4px 10px; border-radius:100px; white-space:nowrap;
+  }
+  .sub-copy-btn.copied .copied-label{display:block;}
+  .qr-box{
+    background:#fff; padding:12px; border-radius:var(--radius-m); width:136px; height:136px;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 12px 30px -14px rgba(0,0,0,.5);
+  }
+  .qr-box img, .qr-box canvas{display:block; width:100%; height:100%;}
+  @media (max-width:720px){
+    .sub-card{grid-template-columns:1fr; text-align:center;}
+    .sub-link-box{white-space:normal; word-break:break-all;}
+    .sub-actions{justify-content:center;}
+    .qr-box{margin:0 auto;}
+  }
+  .server-note{
+    display:flex; gap:10px; align-items:flex-start; margin-top:18px;
+    background:color-mix(in srgb, var(--warn) 8%, var(--surface)); border:1px solid var(--border);
+    border-radius:var(--radius-m); padding:14px 16px; font-size:.86rem; color:var(--text-dim);
+  }
+  .server-note svg{flex-shrink:0; color:var(--warn); margin-top:2px;}
+  .server-note b{color:var(--text);}
+
 </style>
 </head>
 <body>
 
 <div class="grid-field" aria-hidden="true"></div>
+<div class="glow-orb glow-1" aria-hidden="true"></div>
+<div class="glow-orb glow-2" aria-hidden="true"></div>
+<div class="glow-orb glow-3" aria-hidden="true"></div>
 
 <header class="nav">
   <div class="wrap nav-inner">
@@ -465,6 +569,7 @@
     </div>
     <nav class="links">
       <a href="#search">Диагностика</a>
+      <a href="#servers">Сервера</a>
       <a href="#fix">VPN не работает</a>
       <a href="#vless">VLESS</a>
       <a href="#apps">Приложения</a>
@@ -482,6 +587,7 @@
 <div class="mobile-menu" id="mobileMenu">
   <div class="mobile-menu-inner">
     <a href="#search"><span>Диагностика</span><span class="arrow">→</span></a>
+    <a href="#servers"><span>Сервера и подписка</span><span class="arrow">→</span></a>
     <a href="#fix"><span>VPN не работает</span><span class="arrow">→</span></a>
     <a href="#vless"><span>Ошибки VLESS</span><span class="arrow">→</span></a>
     <a href="#apps"><span>Приложения Happ / Incy</span><span class="arrow">→</span></a>
@@ -506,7 +612,10 @@
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           Найти свою ошибку
         </a>
-        <a href="#vless" class="btn btn-ghost">Каталог ошибок VLESS</a>
+        <a href="#servers" class="btn btn-ghost">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="6" rx="1.6" stroke="currentColor" stroke-width="1.7"/><rect x="3" y="14" width="18" height="6" rx="1.6" stroke="currentColor" stroke-width="1.7"/><circle cx="7" cy="7" r="1" fill="currentColor"/><circle cx="7" cy="17" r="1" fill="currentColor"/></svg>
+          Моя подписка и сервера
+        </a>
       </div>
       <div class="hero-stats">
         <div class="hero-stat"><b>70+</b><span>разобранных ошибки</span></div>
@@ -677,6 +786,136 @@
   </div>
 </section>
 
+<section id="servers">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker">сервера и подписка</p>
+      <h2 class="section-title">Ваша ссылка-подписка DJARB</h2>
+      <p class="section-desc">Подписка — это одна ссылка, которая добавляется в Happ или Incy один раз. Внутри неё «зашиты» все рабочие сервера и ключи REALITY, и они обновляются автоматически на стороне сервера — пересобирать конфиг вручную не нужно.</p>
+    </div>
+
+    <div class="sub-card reveal">
+      <div>
+        <div class="sub-label"><span class="status-dot"></span> Ссылка подписки активна</div>
+        <div class="sub-link-box" id="subLinkBox">
+          <span id="subLinkText">https://subikapi.org/c728b3kw/sub/bef018a8-4fce-4ed1-8d94-49ebe55a0431</span>
+        </div>
+        <div class="sub-actions">
+          <button class="btn btn-primary sub-copy-btn" id="copySubBtn" type="button">
+            <span class="copied-label">Скопировано ✓</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="9" y="9" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M5 15V5a2 2 0 012-2h10" stroke="currentColor" stroke-width="1.8"/></svg>
+            Скопировать ссылку
+          </button>
+          <a class="btn btn-ghost" href="https://subikapi.org/c728b3kw/sub/bef018a8-4fce-4ed1-8d94-49ebe55a0431" target="_blank" rel="noopener">Открыть в браузере</a>
+        </div>
+      </div>
+      <div class="qr-box" id="qrBox" aria-label="QR-код ссылки подписки"></div>
+    </div>
+
+    <div class="server-note reveal">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 9v4m0 4h.01M10.3 3.9L2.6 18a1.8 1.8 0 001.5 2.7h15.8a1.8 1.8 0 001.5-2.7L13.7 3.9a1.8 1.8 0 00-3.4 0z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      <span><b>Ссылка личная.</b> Она привязана к вашему профилю — не публикуйте её и не передавайте третьим лицам: это единственный ключ доступа ко всем вашим серверам.</span>
+    </div>
+
+    <div class="about-grid reveal" style="margin-top:30px;">
+      <div class="about-card">
+        <b>Протокол</b>
+        <span>VLESS поверх REALITY и TLS 1.3 — трафик маскируется под обычный HTTPS-сайт, поэтому его сложно отличить от обычного просмотра интернета.</span>
+      </div>
+      <div class="about-card">
+        <b>Автообновление</b>
+        <span>Как только сервер обновляет ключи или адреса, подписка подтягивает новые данные сама при следующем обновлении в приложении.</span>
+      </div>
+      <div class="about-card">
+        <b>Где работает</b>
+        <span>Одна и та же ссылка подходит и для Happ, и для Incy — на телефоне и на компьютере, без отдельных конфигов под каждое устройство.</span>
+      </div>
+      <div class="about-card">
+        <b>Если не подключается</b>
+        <span>Сначала обновите подписку в приложении (не открывайте её заново вручную), затем проверьте раздел «VPN не работает» ниже.</span>
+      </div>
+    </div>
+
+    <div class="section-head reveal" style="margin-top:44px;">
+      <p class="kicker">как подключить</p>
+      <h2 class="section-title" style="font-size:clamp(1.3rem,2vw,1.6rem);">Добавление подписки в приложение</h2>
+      <p class="section-desc">Выберите своё приложение — шаги отличаются местом пункта меню, суть одна и та же: вставить ссылку как источник серверов.</p>
+    </div>
+
+    <div class="tabbar">
+      <button class="tab-btn active" data-tab="sub-happ">В Happ</button>
+      <button class="tab-btn" data-tab="sub-incy">В Incy</button>
+    </div>
+
+    <div class="tab-panel active" id="tab-sub-happ">
+      <div class="step-seq">
+        <div class="step-seq-item">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h4>Скопируйте ссылку подписки</h4>
+            <p>Нажмите «Скопировать ссылку» в карточке выше — она сразу попадёт в буфер обмена.</p>
+          </div>
+        </div>
+        <div class="step-seq-item">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h4>Откройте Happ → раздел подписок</h4>
+            <p>На главном экране нажмите значок «+» или «Добавить подписку» (обычно вверху справа или внизу экрана).</p>
+          </div>
+        </div>
+        <div class="step-seq-item">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h4>Выберите «Добавить по ссылке»</h4>
+            <p>Вставьте скопированную ссылку в поле и подтвердите — Happ загрузит серверы автоматически.</p>
+            <div class="step-note">Если поле вставки не появилось само — откройте буфер обмена долгим тапом по полю ввода.</div>
+          </div>
+        </div>
+        <div class="step-seq-item">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h4>Дождитесь загрузки списка серверов</h4>
+            <p>Появится список локаций — выберите любую и нажмите «Подключить».</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-sub-incy">
+      <div class="step-seq">
+        <div class="step-seq-item">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h4>Скопируйте ссылку подписки</h4>
+            <p>Нажмите «Скопировать ссылку» в карточке выше.</p>
+          </div>
+        </div>
+        <div class="step-seq-item">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h4>Откройте Incy → «Профили» / «Подписки»</h4>
+            <p>Найдите пункт добавления новой подписки — обычно значок «+» в верхней части экрана.</p>
+          </div>
+        </div>
+        <div class="step-seq-item">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h4>Вставьте ссылку и сохраните</h4>
+            <p>Incy сам определит, что это ссылка-подписка, и подтянет все сервера одним списком.</p>
+          </div>
+        </div>
+        <div class="step-seq-item">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h4>Включите VPN</h4>
+            <p>Выберите сервер из списка и нажмите переключатель подключения.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="glossary">
   <div class="wrap">
     <div class="section-head">
@@ -704,6 +943,7 @@
   <div class="wrap foot-inner">
     <p>© DJARB VPN · Поддержка и диагностика</p>
     <div class="foot-links">
+      <a href="#servers">Сервера и подписка</a>
       <a href="#fix">VPN не работает</a>
       <a href="#vless">VLESS</a>
       <a href="#apps">Приложения</a>
@@ -713,6 +953,7 @@
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
 (function(){
   'use strict';
@@ -2374,6 +2615,80 @@
   }
 
   if(reduceMotion){ renderStatic(); } else { typeLines(); }
+
+  /* ---------------- SUBSCRIPTION: copy + QR ---------------- */
+  const SUB_LINK = 'https://subikapi.org/c728b3kw/sub/bef018a8-4fce-4ed1-8d94-49ebe55a0431';
+  const copySubBtn = document.getElementById('copySubBtn');
+  if(copySubBtn){
+    copySubBtn.addEventListener('click', async ()=>{
+      try{
+        await navigator.clipboard.writeText(SUB_LINK);
+      }catch(err){
+        const ta = document.createElement('textarea');
+        ta.value = SUB_LINK; ta.style.position='fixed'; ta.style.opacity='0';
+        document.body.appendChild(ta); ta.select();
+        try{ document.execCommand('copy'); }catch(e){}
+        document.body.removeChild(ta);
+      }
+      copySubBtn.classList.add('copied');
+      setTimeout(()=>copySubBtn.classList.remove('copied'), 1800);
+    });
+  }
+  const qrBox = document.getElementById('qrBox');
+  if(qrBox && window.QRCode){
+    try{
+      new QRCode(qrBox, {
+        text: SUB_LINK,
+        width: 136, height: 136,
+        colorDark: '#0B0F1A',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.M
+      });
+    }catch(err){ /* QR is a bonus, never block the page on it */ }
+  }
+
+  /* ---------------- REVEAL ON SCROLL ---------------- */
+  if(!reduceMotion && 'IntersectionObserver' in window){
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObs = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          revealObs.unobserve(entry.target);
+        }
+      });
+    }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+    revealEls.forEach(el=>revealObs.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in-view'));
+  }
+
+  /* ---------------- NAV: scrolled shadow + active-link scrollspy ---------------- */
+  const navHeader = document.querySelector('header.nav');
+  const onScrollNav = ()=>{
+    if(navHeader) navHeader.classList.toggle('scrolled', window.scrollY > 8);
+  };
+  onScrollNav();
+  window.addEventListener('scroll', onScrollNav, {passive:true});
+
+  const navAnchorLinks = Array.from(document.querySelectorAll('nav.links a[href^="#"]'));
+  const spySections = navAnchorLinks
+    .map(a=>document.querySelector(a.getAttribute('href')))
+    .filter(Boolean);
+  if('IntersectionObserver' in window && spySections.length){
+    const spyObs = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        const id = '#' + entry.target.id;
+        const link = navAnchorLinks.find(a=>a.getAttribute('href')===id);
+        if(!link) return;
+        if(entry.isIntersecting){
+          navAnchorLinks.forEach(a=>a.classList.remove('active'));
+          link.classList.add('active');
+        }
+      });
+    }, {rootMargin:'-45% 0px -50% 0px', threshold:0});
+    spySections.forEach(sec=>spyObs.observe(sec));
+  }
 
 })();
 </script>
