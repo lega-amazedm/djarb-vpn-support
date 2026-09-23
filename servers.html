@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Сервера и подписка — DJARB VPN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="servers">
+<div id="djarbLoginGate"></div>
+
+<div id="siteContent">
+<div id="djarbHeader"></div>
+<div id="djarbMobileMenu"></div>
+
+<main class="page-main">
+  <div class="wrap">
+    <div id="page">
+      <div class="section-head reveal">
+        <p class="kicker">сервера и подписка</p>
+        <h2 class="section-title">Ваша ссылка-подписка DJARB</h2>
+        <p class="section-desc">Подписка — это одна ссылка, которая добавляется в Happ или Incy один раз. Внутри неё «зашиты» все рабочие сервера и ключи REALITY, и они обновляются автоматически на стороне сервера — пересобирать конфиг вручную не нужно.</p>
+      </div>
+
+      <div class="sub-card reveal">
+        <div>
+          <div class="sub-label"><span class="status-dot"></span> Ссылка подписки активна</div>
+          <div class="sub-link-box" id="subLinkBox">
+            <span id="subLinkText">https://subikapi.org/c728b3kw/sub/bef018a8-4fce-4ed1-8d94-49ebe55a0431</span>
+          </div>
+          <div class="sub-actions">
+            <button class="btn btn-primary sub-copy-btn" id="copySubBtn" type="button">
+              <span class="copied-label">Скопировано ✓</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="9" y="9" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M5 15V5a2 2 0 012-2h10" stroke="currentColor" stroke-width="1.8"/></svg>
+              Скопировать ссылку
+            </button>
+            <a class="btn btn-ghost" id="subOpenLink" href="https://subikapi.org/c728b3kw/sub/bef018a8-4fce-4ed1-8d94-49ebe55a0431" target="_blank" rel="noopener">Открыть в браузере</a>
+          </div>
+        </div>
+        <div class="qr-box" id="qrBox" aria-label="QR-код ссылки подписки"></div>
+      </div>
+
+      <div class="server-note reveal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 9v4m0 4h.01M10.3 3.9L2.6 18a1.8 1.8 0 001.5 2.7h15.8a1.8 1.8 0 001.5-2.7L13.7 3.9a1.8 1.8 0 00-3.4 0z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <span><b>Ссылка личная.</b> Она привязана к вашему профилю — не публикуйте её и не передавайте третьим лицам: это единственный ключ доступа ко всем вашим серверам.</span>
+      </div>
+
+      <div class="about-grid reveal" style="margin-top:30px;">
+        <div class="about-card">
+          <b>Протокол</b>
+          <span>VLESS поверх REALITY и TLS 1.3 — трафик маскируется под обычный HTTPS-сайт, поэтому его сложно отличить от обычного просмотра интернета.</span>
+        </div>
+        <div class="about-card">
+          <b>Автообновление</b>
+          <span>Как только сервер обновляет ключи или адреса, подписка подтягивает новые данные сама при следующем обновлении в приложении.</span>
+        </div>
+        <div class="about-card">
+          <b>Где работает</b>
+          <span>Одна и та же ссылка подходит и для Happ, и для Incy — на телефоне и на компьютере, без отдельных конфигов под каждое устройство.</span>
+        </div>
+        <div class="about-card">
+          <b>Если не подключается</b>
+          <span>Сначала обновите подписку в приложении (не открывайте её заново вручную), затем проверьте раздел «<a href="fix.html">VPN не работает</a>».</span>
+        </div>
+      </div>
+
+      <div class="section-head reveal" style="margin-top:44px;">
+        <p class="kicker">как подключить</p>
+        <h2 class="section-title" style="font-size:clamp(1.3rem,2vw,1.6rem);">Добавление подписки в приложение</h2>
+        <p class="section-desc">Выберите своё приложение — шаги отличаются местом пункта меню, суть одна и та же: вставить ссылку как источник серверов.</p>
+      </div>
+
+      <div class="tabbar">
+        <button class="tab-btn active" data-tab="sub-happ">В Happ</button>
+        <button class="tab-btn" data-tab="sub-incy">В Incy</button>
+      </div>
+
+      <div class="tab-panel active" id="tab-sub-happ">
+        <div class="step-seq">
+          <div class="step-seq-item">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <h4>Скопируйте ссылку подписки</h4>
+              <p>Нажмите «Скопировать ссылку» в карточке выше — она сразу попадёт в буфер обмена.</p>
+            </div>
+          </div>
+          <div class="step-seq-item">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <h4>Откройте Happ → раздел подписок</h4>
+              <p>На главном экране нажмите значок «+» или «Добавить подписку» (обычно вверху справа или внизу экрана).</p>
+            </div>
+          </div>
+          <div class="step-seq-item">
+            <div class="step-num">3</div>
+            <div class="step-body">
+              <h4>Выберите «Добавить по ссылке»</h4>
+              <p>Вставьте скопированную ссылку в поле и подтвердите — Happ загрузит серверы автоматически.</p>
+              <div class="step-note">Если поле вставки не появилось само — откройте буфер обмена долгим тапом по полю ввода.</div>
+            </div>
+          </div>
+          <div class="step-seq-item">
+            <div class="step-num">4</div>
+            <div class="step-body">
+              <h4>Дождитесь загрузки списка серверов</h4>
+              <p>Появится список локаций — выберите любую и нажмите «Подключить».</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-sub-incy">
+        <div class="step-seq">
+          <div class="step-seq-item">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <h4>Скопируйте ссылку подписки</h4>
+              <p>Нажмите «Скопировать ссылку» в карточке выше.</p>
+            </div>
+          </div>
+          <div class="step-seq-item">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <h4>Откройте Incy → «Профили» / «Подписки»</h4>
+              <p>Найдите пункт добавления новой подписки — обычно значок «+» в верхней части экрана.</p>
+            </div>
+          </div>
+          <div class="step-seq-item">
+            <div class="step-num">3</div>
+            <div class="step-body">
+              <h4>Вставьте ссылку и сохраните</h4>
+              <p>Incy сам определит, что это ссылка-подписка, и подтянет все сервера одним списком.</p>
+            </div>
+          </div>
+          <div class="step-seq-item">
+            <div class="step-num">4</div>
+            <div class="step-body">
+              <h4>Включите VPN</h4>
+              <p>Выберите сервер из списка и нажмите переключатель подключения.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<div id="djarbFooter"></div>
+</div><!-- /#siteContent -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="config.js"></script>
+<script src="auth.js"></script>
+<script src="layout.js"></script>
+<script src="page-servers.js"></script>
+<script>
+  DJARB.initLayout({ page: 'servers', title: 'Сервера и подписка — DJARB VPN', crumbTitle: 'Сервера и подписка' });
+  DJARB.initServersPage();
+</script>
+</body>
+</html>

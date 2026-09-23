@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Настройка — DJARB VPN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="setup">
+<div id="djarbLoginGate"></div>
+
+<div id="siteContent">
+<div id="djarbHeader"></div>
+<div id="djarbMobileMenu"></div>
+
+<main class="page-main">
+  <div class="wrap">
+    <div id="page">
+      <div class="section-head">
+        <p class="kicker">пошагово</p>
+        <h2 class="section-title">Настройка на iPhone и Android</h2>
+        <p class="section-desc">Полный порядок действий от установки приложения до рабочего подключения — то, что можно прислать клиенту одной ссылкой на раздел.</p>
+      </div>
+      <div class="device-tabbar" id="setupDeviceTabbar" data-section="setup">
+        <button class="device-btn active" data-device="ios">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="6" y="2" width="12" height="20" rx="2.5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="18.3" r="0.9" fill="currentColor"/></svg>
+          iPhone / iPad
+        </button>
+        <button class="device-btn" data-device="android">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="6" y="3" width="12" height="18" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M9 3l1-1.6h4L15 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          Android
+        </button>
+      </div>
+      <div class="device-panel active" id="setup-ios"><div class="step-seq" id="setupIosSteps"></div></div>
+      <div class="device-panel" id="setup-android"><div class="step-seq" id="setupAndroidSteps"></div></div>
+    </div>
+  </div>
+</main>
+<div id="djarbFooter"></div>
+</div><!-- /#siteContent -->
+
+<script src="config.js"></script>
+<script src="auth.js"></script>
+<script src="catalog.js"></script>
+<script src="setup.js"></script>
+<script src="layout.js"></script>
+<script src="page-setup.js"></script>
+<script>
+  DJARB.initLayout({ page: 'setup', title: 'Настройка — DJARB VPN', crumbTitle: 'Настройка' });
+  DJARB.initSetupPage();
+</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>DJARB VPN — вход, Мага</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B0F1A; --surface:#121A2B; --border:#28324A;
+    --text:#E9EDF6; --text-dim:#93A0BF;
+    --accent:#45D9C6; --accent-2:#8090FF;
+    box-sizing:border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme="dark"]){
+      --bg:#F4F6FB; --surface:#FFFFFF; --border:#DCE1EF;
+      --text:#141A29; --text-dim:#4B5674;
+      --accent:#0E9C8C; --accent-2:#4C5CD9;
+    }
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:'Inter',sans-serif; display:flex; align-items:center; justify-content:center;
+    min-height:100%; padding:24px; -webkit-font-smoothing:antialiased;
+  }
+  .card{
+    width:100%; max-width:380px; text-align:center;
+    background:var(--surface); border:1px solid var(--border); border-radius:22px;
+    padding:40px 30px 34px; box-shadow:0 24px 70px rgba(0,0,0,.4);
+  }
+  .avatar{
+    width:64px; height:64px; margin:0 auto 18px; border-radius:20px;
+    background:linear-gradient(135deg, var(--accent), var(--accent-2));
+    display:flex; align-items:center; justify-content:center;
+    color:#06140F; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.7rem;
+  }
+  h1{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.3rem; margin:0 0 6px;}
+  p{color:var(--text-dim); font-size:.92rem; margin:0 0 26px; line-height:1.5;}
+  .spinner{
+    width:26px; height:26px; margin:0 auto 18px; border-radius:50%;
+    border:3px solid var(--border); border-top-color:var(--accent);
+    animation:spin .8s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+  a.manual{color:var(--accent); font-size:.85rem; text-decoration:none; font-weight:600;}
+  a.manual:hover{text-decoration:underline;}
+  small{display:block; margin-top:22px; color:var(--text-dim); opacity:.6; font-size:.72rem;}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="avatar">М</div>
+    <h1>Здравствуйте, Мага!</h1>
+    <div class="spinner" aria-hidden="true"></div>
+    <p>Переходим в личный кабинет поддержки DJARB VPN.<br>Логин уже подставлен — останется ввести только пароль.</p>
+    <a class="manual" href="index.html?u=maga" id="manualLink">Перейти вручную →</a>
+    <small>DJARB VPN · персональная страница входа</small>
+  </div>
+  <script>
+    var target = "index.html?u=maga";
+    document.getElementById('manualLink').href = target;
+    setTimeout(function(){ window.location.replace(target); }, 900);
+  </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Термины — DJARB VPN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="glossary">
+<div id="djarbLoginGate"></div>
+
+<div id="siteContent">
+<div id="djarbHeader"></div>
+<div id="djarbMobileMenu"></div>
+
+<main class="page-main">
+  <div class="wrap">
+    <div id="page">
+      <div class="section-head">
+        <p class="kicker">простыми словами</p>
+        <h2 class="section-title">Термины, которые встречаются в разборах</h2>
+        <p class="section-desc">Не обязательно знать это всё — но если в разборе ошибки встретилось незнакомое слово, объяснение почти наверняка здесь.</p>
+      </div>
+      <dl class="glossary-grid" id="glossaryGrid"></dl>
+    </div>
+  </div>
+</main>
+<div id="djarbFooter"></div>
+</div><!-- /#siteContent -->
+
+<script src="config.js"></script>
+<script src="auth.js"></script>
+<script src="meta.js"></script>
+<script src="layout.js"></script>
+<script src="page-glossary.js"></script>
+<script>
+  DJARB.initLayout({ page: 'glossary', title: 'Термины — DJARB VPN', crumbTitle: 'Термины' });
+  DJARB.initGlossaryPage();
+</script>
+</body>
+</html>
