@@ -215,5 +215,1181 @@ DJARB.HAPP = [
         'Если устройство корпоративное — уточните политику у администратора, обходить такие ограничения не рекомендуется.',
         'На личном устройстве с родительским контролем — снимите ограничение через аккаунт, который им управляет.'
       ]
+    },
+    {
+      id:'h-profile-corrupted', group:'Стабильность', sev:'crit',
+      title:'Профиль повреждён и не работает',
+      code:'CORRUPT', symptom:'Выбранный профиль постоянно падает с ошибкой или не проходит тест.',
+      cause:'Локальный файл профиля повреждён при сбойном обновлении или несовместимости версий.',
+      plain:'Файл профиля «испорчен» — приложение не может его прочитать корректно.',
+      fix:[
+        'Удалите проблемный профиль и импортируйте его заново из подписки.',
+        'Очистите кэш приложения перед повторным импортом.',
+        'Если проблема повторяется — обновите приложение до последней версии.'
+      ]
+    },
+    {
+      id:'h-log-too-large', group:'Диагностика', sev:'info',
+      title:'Логи занимают слишком много места',
+      code:'LOG-SIZE', symptom:'Приложение занимает много места на устройстве, в основном логами.',
+      cause:'Логи не очищаются автоматически и накапливаются за долгое время работы.',
+      plain:'Журнал работы приложения вырос слишком большим.',
+      fix:[
+        'Очистите логи в настройках приложения.',
+        'Включите автоочистку логов, если такая опция есть.',
+        'Установите лимит размера логов в настройках.'
+      ]
+    },
+    {
+      id:'h-route-table-conflict', group:'Маршрутизация', sev:'warn',
+      title:'Конфликт с таблицей маршрутизации',
+      code:'ROUTE-TABLE', symptom:'После подключения часть сетей недоступна.',
+      cause:'Правила маршрутизации VPN конфликтуют с существующими правилами системы.',
+      plain:'Карта путей в интернете смешалась — одни маршруты перекрывают другие.',
+      fix:[
+        'Отключите кастомные правила маршрутизации в системе.',
+        'Используйте режим «Весь трафик» для простоты.',
+        'Проверьте сплит-туннелинг на корректность настроек.'
+      ]
+    },
+    {
+      id:'h-mtu-fragmentation', group:'Сеть', sev:'info',
+      title:'Проблемы с MTU и фрагментацией',
+      code:'MTU-FRAG', symptom:'Часть сайтов грузится медленно или не догружается.',
+      cause:'MTU туннеля слишком большой и вызывает фрагментацию пакетов.',
+      plain:'Пакеты данных слишком большие и разваливаются на части.',
+      fix:[
+        'Уменьшите MTU в настройках профиля (обычно до 1400–1420).',
+        'Включите автоматическое определение MTU, если есть опция.',
+        'Попробуйте другой транспорт для сравнения.'
+      ]
+    },
+    {
+      id:'h-udp-leak', group:'Безопасность', sev:'warn',
+      title:'UDP утечка через VPN',
+      code:'UDP-LEAK', symptom:'UDP трафик идёт в обход VPN.',
+      cause:'UDP пакеты не маршрутизируются через туннель корректно.',
+      plain:'Часть данных «убегает» из защищённого туннеля.',
+      fix:[
+        'Включите принудительную маршрутизацию UDP через VPN.',
+        'Проверьте правила фаервола на устройстве.',
+        'Используйте тест утечек для диагностики.'
+      ]
+    },
+    {
+      id:'h-websocket-fallback', group:'Транспорт', sev:'info',
+      title:'WebSocket fallback не работает',
+      code:'WS-FALLBACK', symptom:'Переключение на WebSocket не срабатывает.',
+      cause:'WebSocket транспорт недоступен или настроен неверно.',
+      plain:'Резервный способ связи не включается.',
+      fix:[
+        'Проверьте настройки WebSocket в профиле.',
+        'Обновите приложение для лучшей поддержки fallback.',
+        'Используйте основной транспорт.'
+      ]
+    },
+    {
+      id:'h-quic-block', group:'Транспорт', sev:'info',
+      title:'QUIC протокол блокируется',
+      code:'QUIC-BLOCK', symptom:'HTTP/3 сайты не работают через VPN.',
+      cause:'QUIC (HTTP/3) блокируется провайдером или конфигурацией.',
+      plain:'Новый протокол HTTP не проходит через туннель.',
+      fix:[
+        'Отключите QUIC в браузере (использовать HTTP/2).',
+        'Проверьте поддержку UDP в конфигурации.',
+        'Использовать HTTP/2 вместо HTTP/3.'
+      ]
+    },
+    {
+      id:'h-tcp-fast-open', group:'Транспорт', sev:'info',
+      title:'TCP Fast Open не работает',
+      code:'TFO', symptom:'Соединение устанавливается медленно.',
+      cause:'TCP Fast Open не поддерживается сетью или отключён.',
+      plain:'Ускорение подключения не работает.',
+      fix:[
+        'Включите TFO в настройках приложения.',
+        'Проверьте поддержку TFO на уровне системы.',
+        'Это не критично — соединение будет работать чуть медленнее.'
+      ]
+    },
+    {
+      id:'h-keep-alive-timeout', group:'Транспорт', sev:'info',
+      title:'Keep-alive таймаут слишком короткий',
+      code:'KA-TIMEOUT', symptom:'Соединение разрывается при бездействии.',
+      cause:'Интервал keep-alive слишком большой или отключён.',
+      plain:'Связь «засыпает» и обрывается.',
+      fix:[
+        'Уменьшите интервал keep-alive в настройках.',
+        'Включите отправку ping пакетов.',
+        'Проверьте настройки NAT таймаута на роутере.'
+      ]
+    },
+    {
+      id:'h-mux-optimization', group:'Транспорт', sev:'info',
+      title:'Mux оптимизация не работает',
+      code:'MUX-OPT', symptom:'Мультиплексирование не даёт прироста скорости.',
+      cause:'Mux настроен неверно или не подходит для текущей сети.',
+      plain:'Объединение соединений не работает эффективно.',
+      fix:[
+        'Отключите Mux на нестабильных сетях.',
+        'Попробуйте разные режимы Mux.',
+        'Обновите клиент для лучшей поддержки Mux.'
+      ]
+    },
+    {
+      id:'h-dns-cache-issue', group:'Сеть', sev:'info',
+      title:'DNS кэш устарел',
+      code:'DNS-CACHE', symptom:'Сайты открываются по старым IP.',
+      cause:'DNS кэш приложения не обновляется корректно.',
+      plain:'Приложение помнит старые адреса сайтов.',
+      fix:[
+        'Очистите DNS кэш в настройках.',
+        'Перезапустите приложение.',
+        'Используйте другой DNS сервер.'
+      ]
+    },
+    {
+      id:'h-proxy-chain', group:'Транспорт', sev:'warn',
+      title:'Цепочка прокси не работает',
+      code:'PROXY-CHAIN', symptom:'Прокси цепочка не устанавливается.',
+      cause:'Один из прокси в цепи недоступен или настроен неверно.',
+      plain:'Цепочка из нескольких прокси рвётся на одном из звеньев.',
+      fix:[
+        'Проверьте каждый прокси в цепи отдельно.',
+        'Упростите цепочку до одного прокси.',
+        'Проверьте поддержку proxy chain в клиенте.'
+      ]
+    },
+    {
+      id:'h-shadowsocks-conflict', group:'Транспорт', sev:'info',
+      title:'Конфликт с Shadowsocks',
+      code:'SS-CONFLICT', symptom:'Shadowsocks режим не работает.',
+      cause:'Shadowsocks протокол настроен неверно или не поддерживается.',
+      plain:'Альтернативный протокол шифрования не работает.',
+      fix:[
+        'Проверьте настройки Shadowsocks в профиле.',
+        'Используйте VLESS/REALITY вместо Shadowsocks.',
+        'Обновите клиент для поддержки SS.'
+      ]
+    },
+    {
+      id:'h-trojan-conflict', group:'Транспорт', sev:'info',
+      title:'Конфликт с Trojan',
+      code:'TROJAN-CONFLICT', symptom:'Trojan режим не работает.',
+      cause:'Trojan протокол настроен неверно.',
+      plain:'Протокол Trojan не работает корректно.',
+      fix:[
+        'Проверьте настройки Trojan в профиле.',
+        'Используйте стандартный VLESS.',
+        'Обновите клиент для поддержки Trojan.'
+      ]
+    },
+    {
+      id:'h-v2ray-conflict', group:'Транспорт', sev:'info',
+      title:'Конфликт с V2Ray',
+      code:'V2RAY-CONFLICT', symptom:'V2Ray режим не работает.',
+      cause:'V2Ray протокол настроен неверно.',
+      plain:'Старый протокол V2Ray не работает.',
+      fix:[
+        'Используйте VLESS вместо V2Ray.',
+        'Обновите конфиг до актуального формата.',
+        'Проверьте поддержку V2Ray в клиенте.'
+      ]
+    },
+    {
+      id:'h-sniffing-issue', group:'Безопасность', sev:'info',
+      title:'Sniffing не работает',
+      code:'SNIFF', symptom:'Sniffing доменов не работает.',
+      cause:'Sniffing настроен неверно или отключён.',
+      plain:'Определение доменов не работает.',
+      fix:[
+        'Включите sniffing в настройках маршрутизации.',
+        'Проверьте правила sniffing.',
+        'Обновите клиент для лучшей поддержки.'
+      ]
+    },
+    {
+      id:'h-fakedns-issue', group:'Сеть', sev:'info',
+      title:'FakeDNS не работает',
+      code:'FAKEDNS', symptom:'FakeDNS не резолвит домены.',
+      cause:'FakeDNS настроен неверно.',
+      plain:'Поддельный DNS не работает.',
+      fix:[
+        'Проверьте настройки FakeDNS.',
+        'Используйте обычный DNS.',
+        'Обновите клиент для поддержки FakeDNS.'
+      ]
+    },
+    {
+      id:'h-geoip-blocking', group:'Маршрутизация', sev:'info',
+      title:'GeoIP блокировка не работает',
+      code:'GEOIP', symptom:'GeoIP правила не применяются.',
+      cause:'GeoIP база устарела или настроена неверно.',
+      plain:'Блокировка по географии не работает.',
+      fix:[
+        'Обновите GeoIP базу.',
+        'Проверьте правила GeoIP в маршрутизации.',
+        'Используйте simple rules вместо GeoIP.'
+      ]
+    },
+    {
+      id:'h-geosite-blocking', group:'Маршрутизация', sev:'info',
+      title:'GeoSite блокировка не работает',
+      code:'GEOSITE', symptom:'GeoSite правила не применяются.',
+      cause:'GeoSite база устарела или настроена неверно.',
+      plain:'Блокировка по спискам доменов не работает.',
+      fix:[
+        'Обновите GeoSite базу.',
+        'Проверьте правила GeoSite в маршрутизации.',
+        'Используйте domain rules вместо GeoSite.'
+      ]
+    },
+    {
+      id:'h-packet-encoding', group:'Транспорт', sev:'info',
+      title:'Packet encoding проблемы',
+      code:'PACKET-ENC', symptom:'Кодировка пакетов не работает.',
+      cause:'Packet encoding настроен неверно.',
+      plain:'Способ кодирования данных не работает.',
+      fix:[
+        'Проверьте настройки packet encoding.',
+        'Используйте другой encoding.',
+        'Обновите клиент для поддержки.'
+      ]
+    },
+    {
+      id:'h-stream-settings', group:'Транспорт', sev:'info',
+      title:'Stream settings не работают',
+      code:'STREAM', symptom:'Настройки потока не применяются.',
+      cause:'Stream settings настроены неверно.',
+      plain:'Настройки транспорта не работают.',
+      fix:[
+        'Проверьте stream settings в профиле.',
+        'Используйте дефолтные настройки.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-security-setting', group:'Безопасность', sev:'info',
+      title:'Security settings не работают',
+      code:'SECURITY', symptom:'Настройки безопасности не применяются.',
+      cause:'Security settings настроены неверно.',
+      plain:'Настройки защиты не работают.',
+      fix:[
+        'Проверьте security settings.',
+        'Используйте tls или reality.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-sockopt', group:'Сеть', sev:'info',
+      title:'Socket options не работают',
+      code:'SOCKOPT', symptom:'Опции сокета не применяются.',
+      cause:'Sockopt настроены неверно.',
+      plain:'Настройки сокета не работают.',
+      fix:[
+        'Проверьте sockopt в профиле.',
+        'Используйте дефолтные значения.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-tls-setting', group:'Безопасность', sev:'info',
+      title:'TLS settings не работают',
+      code:'TLS-SET', symptom:'Настройки TLS не применяются.',
+      cause:'TLS settings настроены неверно.',
+      plain:'Настройки TLS не работают.',
+      fix:[
+        'Проверьте TLS settings.',
+        'Используйте ALPN h2,http/1.1.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-reality-setting', group:'Безопасность', sev:'info',
+      title:'REALITY settings не работают',
+      code:'REALITY-SET', symptom:'Настройки REALITY не применяются.',
+      cause:'REALITY settings настроены неверно.',
+      plain:'Настройки REALITY не работают.',
+      fix:[
+        'Проверьте REALITY settings.',
+        'Сверьте publicKey и shortId.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-fingerprint', group:'Безопасность', sev:'info',
+      title:'Fingerprint не работает',
+      code:'FINGERPRINT', symptom:'TLS fingerprint не совпадает.',
+      cause:'Fingerprint настроен неверно.',
+      plain:'Маскировка под браузер не работает.',
+      fix:[
+        'Проверьте fingerprint в настройках.',
+        'Используйте chrome или firefox.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-splice-setting', group:'Транспорт', sev:'info',
+      title:'Splice settings не работают',
+      code:'SPLICE', symptom:'Splice не работает.',
+      cause:'Splice настроен неверно.',
+      plain:'Режим splice не работает.',
+      fix:[
+        'Проверьте splice настройки.',
+        'Используйте другой режим.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-upgrade-setting', group:'Транспорт', sev:'info',
+      title:'Upgrade settings не работают',
+      code:'UPGRADE', symptom:'WebSocket upgrade не работает.',
+      cause:'Upgrade настроен неверно.',
+      plain:'Апгрейд соединения не работает.',
+      fix:[
+        'Проверьте upgrade настройки.',
+        'Используйте правильный path.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-host-setting', group:'Транспорт', sev:'info',
+      title:'Host setting не работает',
+      code:'HOST', symptom:'Host header не работает.',
+      cause:'Host настроен неверно.',
+      plain:'Заголовок Host не устанавливается.',
+      fix:[
+        'Проверьте host в настройках.',
+        'Используйте правильный домен.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-path-setting', group:'Транспорт', sev:'info',
+      title:'Path setting не работает',
+      code:'PATH', symptom:'Path не работает.',
+      cause:'Path настроен неверно.',
+      plain:'Путь не устанавливается.',
+      fix:[
+        'Проверьте path в настройках.',
+        'Используйте правильный путь.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-service-name', group:'Транспорт', sev:'info',
+      title:'ServiceName не работает',
+      code:'SVC', symptom:'gRPC serviceName не работает.',
+      cause:'ServiceName настроен неверно.',
+      plain:'Название сервиса gRPC не работает.',
+      fix:[
+        'Проверьте serviceName.',
+        'Сверьте с сервером.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-authority-setting', group:'Транспорт', sev:'info',
+      title:'Authority не работает',
+      code:'AUTH', symptom:'Authority не работает.',
+      cause:'Authority настроен неверно.',
+      plain:'Авторитет не устанавливается.',
+      fix:[
+        'Проверьте authority.',
+        'Используйте правильное значение.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-network-setting', group:'Транспорт', sev:'info',
+      title:'Network setting не работает',
+      code:'NET', symptom:'Network тип не работает.',
+      cause:'Network настроен неверно.',
+      plain:'Тип сети не работает.',
+      fix:[
+        'Проверьте network (tcp/ws/grpc).',
+        'Используйте правильный тип.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-header-setting', group:'Транспорт', sev:'info',
+      title:'Header settings не работают',
+      code:'HEADER', symptom:'HTTP headers не работают.',
+      cause:'Headers настроены неверно.',
+      plain:'Заголовки не устанавливаются.',
+      fix:[
+        'Проверьте headers.',
+        'Используйте правильные заголовки.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-pref-ipv4', group:'Сеть', sev:'info',
+      title:'Предпочтение IPv4 не работает',
+      code:'IPV4', symptom:'IPv4 не приоритизируется.',
+      cause:'Pref IPv4 настроен неверно.',
+      plain:'IPv4 не используется первым.',
+      fix:[
+        'Включите pref IPv4.',
+        'Отключите IPv6 временно.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-pref-ipv6', group:'Сеть', sev:'info',
+      title:'Предпочтение IPv6 не работает',
+      code:'IPV6', symptom:'IPv6 не приоритизируется.',
+      cause:'Pref IPv6 настроен неверно.',
+      plain:'IPv6 не используется первым.',
+      fix:[
+        'Включите pref IPv6.',
+        'Проверьте поддержку IPv6.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-disable-cache', group:'Производительность', sev:'info',
+      title:'Отключение кэша не работает',
+      code:'NO-CACHE', symptom:'Кэш не отключается.',
+      cause:'Disable cache настроен неверно.',
+      plain:'Кэш всё равно используется.',
+      fix:[
+        'Проверьте настройку disable cache.',
+        'Очистите кэш вручную.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-disable-experimental', group:'Экспериментальное', sev:'info',
+      title:'Экспериментальные функции не отключаются',
+      code:'NO-EXP', symptom:'Экспериментальные функции всё равно активны.',
+      cause:'Disable experimental настроен неверно.',
+      plain:'Эксперименты не отключаются.',
+      fix:[
+        'Проверьте настройку.',
+        'Используйте стабильную версию.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-sniff-tls', group:'Безопасность', sev:'info',
+      title:'TLS sniffing не работает',
+      code:'TLS-SNIFF', symptom:'TLS SNI не определяется.',
+      cause:'TLS sniffing настроен неверно.',
+      plain:'Определение TLS не работает.',
+      fix:[
+        'Включите TLS sniffing.',
+        'Проверьте правила.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-sniff-http', group:'Безопасность', sev:'info',
+      title:'HTTP sniffing не работает',
+      code:'HTTP-SNIFF', symptom:'HTTP host не определяется.',
+      cause:'HTTP sniffing настроен неверно.',
+      plain:'Определение HTTP не работает.',
+      fix:[
+        'Включите HTTP sniffing.',
+        'Проверьте правила.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-sniff-quic', group:'Безопасность', sev:'info',
+      title:'QUIC sniffing не работает',
+      code:'QUIC-SNIFF', symptom:'QUIC не определяется.',
+      cause:'QUIC sniffing настроен неверно.',
+      plain:'Определение QUIC не работает.',
+      fix:[
+        'Включите QUIC sniffing.',
+        'Проверьте поддержку QUIC.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-route-domain', group:'Маршрутизация', sev:'info',
+      title:'Domain routing не работает',
+      code:'DOM-ROUTE', symptom:'Маршрутизация по доменам не работает.',
+      cause:'Domain rules настроены неверно.',
+      plain:'Правила доменов не применяются.',
+      fix:[
+        'Проверьте domain rules.',
+        'Используйте правильный формат.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-route-ip', group:'Маршрутизация', sev:'info',
+      title:'IP routing не работает',
+      code:'IP-ROUTE', symptom:'Маршрутизация по IP не работает.',
+      cause:'IP rules настроены неверно.',
+      plain:'Правила IP не применяются.',
+      fix:[
+        'Проверьте IP rules.',
+        'Используйте правильный формат CIDR.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-route-process', group:'Маршрутизация', sev:'info',
+      title:'Process routing не работает',
+      code:'PROC-ROUTE', symptom:'Маршрутизация по процессам не работает.',
+      cause:'Process rules настроены неверно.',
+      plain:'Правила процессов не применяются.',
+      fix:[
+        'Проверьте process rules.',
+        'Используйте правильные имена.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-route-user', group:'Маршрутизация', sev:'info',
+      title:'User routing не работает',
+      code:'USER-ROUTE', symptom:'Маршрутизация по пользователям не работает.',
+      cause:'User rules настроены неверно.',
+      plain:'Правила пользователей не применяются.',
+      fix:[
+        'Проверьте user rules.',
+        'Используйте правильные UID.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-bypass-domain', group:'Маршрутизация', sev:'info',
+      title:'Bypass domain не работает',
+      code:'BYPASS-DOM', symptom:'Домены не обходят VPN.',
+      cause:'Bypass domain настроен неверно.',
+      plain:'Исключения доменов не работают.',
+      fix:[
+        'Проверьте bypass domain.',
+        'Используйте правильный формат.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-bypass-ip', group:'Маршрутизация', sev:'info',
+      title:'Bypass IP не работает',
+      code:'BYPASS-IP', symptom:'IP не обходят VPN.',
+      cause:'Bypass IP настроен неверно.',
+      plain:'Исключения IP не работают.',
+      fix:[
+        'Проверьте bypass IP.',
+        'Используйте правильный формат CIDR.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-block-domain', group:'Маршрутизация', sev:'info',
+      title:'Block domain не работает',
+      code:'BLOCK-DOM', symptom:'Домены не блокируются.',
+      cause:'Block domain настроен неверно.',
+      plain:'Блокировка доменов не работает.',
+      fix:[
+        'Проверьте block domain.',
+        'Используйте правильный формат.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-block-ip', group:'Маршрутизация', sev:'info',
+      title:'Block IP не работает',
+      code:'BLOCK-IP', symptom:'IP не блокируются.',
+      cause:'Block IP настроен неверно.',
+      plain:'Блокировка IP не работает.',
+      fix:[
+        'Проверьте block IP.',
+        'Используйте правильный формат CIDR.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-stats-enable', group:'Диагностика', sev:'info',
+      title:'Статистика не включается',
+      code:'STATS', symptom:'Статистика трафика не собирается.',
+      cause:'Stats настроен неверно.',
+      plain:'Сбор статистики не работает.',
+      fix:[
+        'Включите stats в настройках.',
+        'Проверьте интерфейс статистики.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-remote-dns', group:'Сеть', sev:'info',
+      title:'Remote DNS не работает',
+      code:'REM-DNS', symptom:'Удалённый DNS не используется.',
+      cause:'Remote DNS настроен неверно.',
+      plain:'Удалённый DNS не работает.',
+      fix:[
+        'Проверьте remote DNS.',
+        'Используйте правильный адрес.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-local-dns', group:'Сеть', sev:'info',
+      title:'Local DNS не работает',
+      code:'LOC-DNS', symptom:'Локальный DNS не используется.',
+      cause:'Local DNS настроен неверно.',
+      plain:'Локальный DNS не работает.',
+      fix:[
+        'Проверьте local DNS.',
+        'Используйте правильный адрес.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-dns-servers', group:'Сеть', sev:'info',
+      title:'DNS servers не работают',
+      code:'DNS-SRV', symptom:'DNS серверы не отвечают.',
+      cause:'DNS servers настроены неверно.',
+      plain:'Серверы DNS не работают.',
+      fix:[
+        'Проверьте DNS servers.',
+        'Используйте публичные DNS.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-fallback', group:'Сеть', sev:'info',
+      title:'Fallback DNS не работает',
+      code:'FALLBACK', symptom:'Fallback DNS не используется.',
+      cause:'Fallback настроен неверно.',
+      plain:'Резервный DNS не работает.',
+      fix:[
+        'Проверьте fallback.',
+        'Настройте правильные правила.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-tag-rule', group:'Маршрутизация', sev:'info',
+      title:'Tag rules не работают',
+      code:'TAG', symptom:'Теги правил не применяются.',
+      cause:'Tag настроен неверно.',
+      plain:'Теги не работают.',
+      fix:[
+        'Проверьте tag.',
+        'Используйте правильные имена.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-balance-rule', group:'Маршрутизация', sev:'info',
+      title:'Balance не работает',
+      code:'BALANCE', symptom:'Балансировка не работает.',
+      cause:'Balance настроен неверно.',
+      plain:'Распределение нагрузки не работает.',
+      fix:[
+        'Проверьте balance.',
+        'Настройте правильные сервера.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-selector-rule', group:'Маршрутизация', sev:'info',
+      title:'Selector не работает',
+      code:'SELECTOR', symptom:'Выбор сервера не работает.',
+      cause:'Selector настроен неверно.',
+      plain:'Селектор не работает.',
+      fix:[
+        'Проверьте selector.',
+        'Добавьте сервера в список.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-url-test-rule', group:'Диагностика', sev:'info',
+      title:'URL test не работает',
+      code:'URL-TEST', symptom:'Тест URL не выполняется.',
+      cause:'URL test настроен неверно.',
+      plain:'Проверка URL не работает.',
+      fix:[
+        'Проверьте URL test.',
+        'Используйте корректный URL.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-vmess-rule', group:'Транспорт', sev:'info',
+      title:'VMess не работает',
+      code:'VMESS', symptom:'VMess протокол не работает.',
+      cause:'VMess настроен неверно.',
+      plain:'Протокол VMess не работает.',
+      fix:[
+        'Проверьте VMess настройки.',
+        'Используйте VLESS вместо VMess.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-vless-rule', group:'Транспорт', sev:'info',
+      title:'VLESS не работает',
+      code:'VLESS', symptom:'VLESS протокол не работает.',
+      cause:'VLESS настроен неверно.',
+      plain:'Протокол VLESS не работает.',
+      fix:[
+        'Проверьте VLESS настройки.',
+        'Используйте актуальный формат.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-api-setting', group:'API', sev:'info',
+      title:'API settings не работают',
+      code:'API', symptom:'API не отвечает.',
+      cause:'API настроен неверно.',
+      plain:'API не работает.',
+      fix:[
+        'Проверьте API настройки.',
+        'Используйте правильный адрес.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-log-level', group:'Диагностика', sev:'info',
+      title:'Log level не меняется',
+      code:'LOG-LEV', symptom:'Уровень логирования не меняется.',
+      cause:'Log level настроен неверно.',
+      plain:'Детальность логов не меняется.',
+      fix:[
+        'Проверьте log level.',
+        'Используйте правильный уровень.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-mux-protocol', group:'Транспорт', sev:'info',
+      title:'Mux protocol не работает',
+      code:'MUX-PROTO', symptom:'Mux протокол не работает.',
+      cause:'Mux protocol настроен неверно.',
+      plain:'Протокол мультиплексирования не работает.',
+      fix:[
+        'Проверьте mux protocol.',
+        'Используйте h2mux или smux.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-padding', group:'Транспорт', sev:'info',
+      title:'Padding не работает',
+      code:'PAD', symptom:'Padding не применяется.',
+      cause:'Padding настроен неверно.',
+      plain:'Дополнение пакетов не работает.',
+      fix:[
+        'Проверьте padding.',
+        'Включите если нужно.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-allow-insecure', group:'Безопасность', sev:'warn',
+      title:'Allow insecure не отключается',
+      code:'INSECURE', symptom:'Небезопасные сертификаты всё равно принимаются.',
+      cause:'Allow insecure настроен неверно.',
+      plain:'Проверка сертификатов отключена.',
+      fix:[
+        'Отключите allow insecure.',
+        'Используйте валидные сертификаты.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-alpn-setting', group:'Безопасность', sev:'info',
+      title:'ALPN не работает',
+      code:'ALPN', symptom:'ALPN не применяется.',
+      cause:'ALPN настроен неверно.',
+      plain:'Согласование протокола не работает.',
+      fix:[
+        'Проверьте ALPN.',
+        'Используйте h2,http/1.1.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-min-version', group:'Безопасность', sev:'info',
+      title:'Min version не работает',
+      code:'MIN-VER', symptom:'Минимальная версия TLS не применяется.',
+      cause:'Min version настроен неверно.',
+      plain:'Мин версия TLS не работает.',
+      fix:[
+        'Проверьте min version.',
+        'Используйте 1.2 или 1.3.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-max-version', group:'Безопасность', sev:'info',
+      title:'Max version не работает',
+      code:'MAX-VER', symptom:'Максимальная версия TLS не применяется.',
+      cause:'Max version настроен неверно.',
+      plain:'Макс версия TLS не работает.',
+      fix:[
+        'Проверьте max version.',
+        'Используйте 1.3.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-cipher-setting', group:'Безопасность', sev:'info',
+      title:'Cipher suites не работают',
+      code:'CIPHER', symptom:'Cipher suites не применяются.',
+      cause:'Cipher suites настроены неверно.',
+      plain:'Шифры не работают.',
+      fix:[
+        'Проверьте cipher suites.',
+        'Используйте современные шифры.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-reject-unknown', group:'Безопасность', sev:'info',
+      title:'Reject unknown SNI не работает',
+      code:'REJECT', symptom:'Неизвестные SNI не блокируются.',
+      cause:'Reject unknown настроен неверно.',
+      plain:'Блокировка неизвестных SNI не работает.',
+      fix:[
+        'Проверьте reject unknown.',
+        'Включите если нужно.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-dialer-proxy', group:'Транспорт', sev:'info',
+      title:'Dialer proxy не работает',
+      code:'DIALER', symptom:'Dialer proxy не используется.',
+      cause:'Dialer proxy настроен неверно.',
+      plain:'Прокси для дозвона не работает.',
+      fix:[
+        'Проверьте dialer proxy.',
+        'Настройте правильный прокси.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-http-port', group:'Транспорт', sev:'info',
+      title:'HTTP port не работает',
+      code:'HTTP-PORT', symptom:'HTTP порт не открывается.',
+      cause:'HTTP port настроен неверно.',
+      plain:'Порт HTTP не работает.',
+      fix:[
+        'Проверьте HTTP port.',
+        'Используйте свободный порт.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-socks-port', group:'Транспорт', sev:'info',
+      title:'SOCKS port не работает',
+      code:'SOCKS-PORT', symptom:'SOCKS порт не открывается.',
+      cause:'SOCKS port настроен неверно.',
+      plain:'Порт SOCKS не работает.',
+      fix:[
+        'Проверьте SOCKS port.',
+        'Используйте свободный порт.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-allow-lan', group:'Сеть', sev:'info',
+      title:'Allow LAN не работает',
+      code:'LAN', symptom:'LAN подключения не работают.',
+      cause:'Allow LAN настроен неверно.',
+      plain:'Локальная сеть не работает.',
+      fix:[
+        'Проверьте allow LAN.',
+        'Настройте firewall.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-bound-interface', group:'Сеть', sev:'info',
+      title:'Bound interface не работает',
+      code:'BOUND', symptom:'Привязка к интерфейсу не работает.',
+      cause:'Bound interface настроен неверно.',
+      plain:'Интерфейс не привязывается.',
+      fix:[
+        'Проверьте bound interface.',
+        'Используйте правильный интерфейс.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-inbound-tag', group:'Транспорт', sev:'info',
+      title:'Inbound tag не работает',
+      code:'IN-TAG', symptom:'Inbound tag не применяется.',
+      cause:'Inbound tag настроен неверно.',
+      plain:'Тег входящего не работает.',
+      fix:[
+        'Проверьте inbound tag.',
+        'Используйте правильный тег.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-outbound-tag', group:'Транспорт', sev:'info',
+      title:'Outbound tag не работает',
+      code:'OUT-TAG', symptom:'Outbound tag не применяется.',
+      cause:'Outbound tag настроен неверно.',
+      plain:'Тег исходящего не работает.',
+      fix:[
+        'Проверьте outbound tag.',
+        'Используйте правильный тег.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-rule-set', group:'Маршрутизация', sev:'info',
+      title:'Rule set не работает',
+      code:'RULESET', symptom:'Rule set не применяется.',
+      cause:'Rule set настроен неверно.',
+      plain:'Набор правил не работает.',
+      fix:[
+        'Проверьте rule set.',
+        'Используйте правильный формат.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-rule-format', group:'Маршрутизация', sev:'info',
+      title:'Rule format не работает',
+      code:'RULE-FMT', symptom:'Формат правил не применяется.',
+      cause:'Rule format настроен неверно.',
+      plain:'Формат правил не работает.',
+      fix:[
+        'Проверьте rule format.',
+        'Используйте правильный формат.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-default-outbound', group:'Маршрутизация', sev:'info',
+      title:'Default outbound не работает',
+      code:'DEF-OUT', symptom:'Default outbound не применяется.',
+      cause:'Default outbound настроен неверно.',
+      plain:'Исходящий по умолчанию не работает.',
+      fix:[
+        'Проверьте default outbound.',
+        'Настройте правильный outbound.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-interop-mode', group:'Совместимость', sev:'info',
+      title:'Interop mode не работает',
+      code:'INTEROP', symptom:'Interop mode не применяется.',
+      cause:'Interop mode настроен неверно.',
+      plain:'Режим совместимости не работает.',
+      fix:[
+        'Проверьте interop mode.',
+        'Используйте правильный режим.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-sniff-override', group:'Безопасность', sev:'info',
+      title:'Sniff override не работает',
+      code:'SNIFF-OVR', symptom:'Sniff override не применяется.',
+      cause:'Sniff override настроен неверно.',
+      plain:'Переопределение sniffing не работает.',
+      fix:[
+        'Проверьте sniff override.',
+        'Настройте правильные правила.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-endpoint-priority', group:'Транспорт', sev:'info',
+      title:'Endpoint priority не работает',
+      code:'ENDPOINT', symptom:'Priority endpoint не используется.',
+      cause:'Endpoint priority настроен неверно.',
+      plain:'Приоритет конечной точки не работает.',
+      fix:[
+        'Проверьте endpoint priority.',
+        'Настройте правильный приоритет.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-congestion-control', group:'Транспорт', sev:'info',
+      title:'Congestion control не работает',
+      code:'CONGESTION', symptom:'Congestion control не применяется.',
+      cause:'Congestion control настроен неверно.',
+      plain:'Контроль перегрузки не работает.',
+      fix:[
+        'Проверьте congestion control.',
+        'Используйте BBR или Cubic.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-disable-sni', group:'Безопасность', sev:'info',
+      title:'Disable SNI не работает',
+      code:'NO-SNI', symptom:'SNI всё равно отправляется.',
+      cause:'Disable SNI настроен неверно.',
+      plain:'Отключение SNI не работает.',
+      fix:[
+        'Проверьте disable SNI.',
+        'Включите если нужно.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-disable-pmtu', group:'Сеть', sev:'info',
+      title:'Disable PMTU не работает',
+      code:'NO-PMTU', symptom:'PMTU всё равно используется.',
+      cause:'Disable PMTU настроен неверно.',
+      plain:'Отключение PMTU не работает.',
+      fix:[
+        'Проверьте disable PMTU.',
+        'Включите если нужно.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-padding-mode', group:'Транспорт', sev:'info',
+      title:'Padding mode не работает',
+      code:'PAD-MODE', symptom:'Padding mode не применяется.',
+      cause:'Padding mode настроен неверно.',
+      plain:'Режим дополнения не работает.',
+      fix:[
+        'Проверьте padding mode.',
+        'Используйте правильный режим.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-xtls-direct', group:'Транспорт', sev:'info',
+      title:'XTLS direct не работает',
+      code:'XTLS-DIR', symptom:'XTLS direct не применяется.',
+      cause:'XTLS direct настроен неверно.',
+      plain:'Прямой XTLS не работает.',
+      fix:[
+        'Проверьте XTLS direct.',
+        'Включите если нужно.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-xtls-splice', group:'Транспорт', sev:'info',
+      title:'XTLS splice не работает',
+      code:'XTLS-SPLICE', symptom:'XTLS splice не применяется.',
+      cause:'XTLS splice настроен неверно.',
+      plain:'XTLS splice не работает.',
+      fix:[
+        'Проверьте XTLS splice.',
+        'Включите если нужно.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-xtls-vision', group:'Транспорт', sev:'info',
+      title:'XTLS Vision не работает',
+      code:'XTLS-VISION', symptom:'XTLS Vision не применяется.',
+      cause:'XTLS Vision настроен неверно.',
+      plain:'XTLS Vision не работает.',
+      fix:[
+        'Проверьте XTLS Vision.',
+        'Используйте правильный flow.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-reality-server', group:'Безопасность', sev:'info',
+      title:'REALITY server не работает',
+      code:'REALITY-SRV', symptom:'REALITY server не применяется.',
+      cause:'REALITY server настроен неверно.',
+      plain:'Сервер REALITY не работает.',
+      fix:[
+        'Проверьте REALITY server.',
+        'Сверьте все параметры.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-reality-client', group:'Безопасность', sev:'info',
+      title:'REALITY client не работает',
+      code:'REALITY-CLI', symptom:'REALITY client не применяется.',
+      cause:'REALITY client настроен неверно.',
+      plain:'Клиент REALITY не работает.',
+      fix:[
+        'Проверьте REALITY client.',
+        'Сверьте все параметры.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-reality-short-id', group:'Безопасность', sev:'info',
+      title:'REALITY short ID не работает',
+      code:'REALITY-SID', symptom:'REALITY short ID не применяется.',
+      cause:'REALITY short ID настроен неверно.',
+      plain:'Short ID REALITY не работает.',
+      fix:[
+        'Проверьте short ID.',
+        'Скопируйте из конфига.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-reality-public-key', group:'Безопасность', sev:'info',
+      title:'REALITY public key не работает',
+      code:'REALITY-PUB', symptom:'REALITY public key не применяется.',
+      cause:'REALITY public key настроен неверно.',
+      plain:'Public key REALITY не работает.',
+      fix:[
+        'Проверьте public key.',
+        'Скопируйте из конфига.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-reality-fingerprint', group:'Безопасность', sev:'info',
+      title:'REALITY fingerprint не работает',
+      code:'REALITY-FP', symptom:'REALITY fingerprint не применяется.',
+      cause:'REALITY fingerprint настроен неверно.',
+      plain:'Fingerprint REALITY не работает.',
+      fix:[
+        'Проверьте fingerprint.',
+        'Используйте chrome/firefox.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-reality-spider', group:'Безопасность', sev:'info',
+      title:'REALITY spider не работает',
+      code:'REALITY-SPIDER', symptom:'REALITY spider не применяется.',
+      cause:'REALITY spider настроен неверно.',
+      plain:'Spider REALITY не работает.',
+      fix:[
+        'Проверьте spider.',
+        'Включите если нужно.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-reality-master-key-log', group:'Безопасность', sev:'info',
+      title:'REALITY master key log не работает',
+      code:'REALITY-MKL', symptom:'REALITY master key log не применяется.',
+      cause:'REALITY master key log настроен неверно.',
+      plain:'Лог мастер-ключа REALITY не работает.',
+      fix:[
+        'Проверьте master key log.',
+        'Включите если нужно.',
+        'Обновите клиент.'
+      ]
+    },
+    {
+      id:'h-reality-detour', group:'Безопасность', sev:'info',
+      title:'REALITY detour не работает',
+      code:'REALITY-DET', symptom:'REALITY detour не применяется.',
+      cause:'REALITY detour настроен неверно.',
+      plain:'Detour REALITY не работает.',
+      fix:[
+        'Проверьте detour.',
+        'Настройте правильный detour.',
+        'Обновите клиент.'
+      ]
     }
   ];;

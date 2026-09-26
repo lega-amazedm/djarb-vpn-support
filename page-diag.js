@@ -313,7 +313,10 @@ DJARB.initDiagPage = function () {
       'Happ не тестирует соединение',
       'Incy отключается в фоне',
       'подключено, но нет интернета',
-      'tls first record'
+      'tls first record',
+      'VPN работает медленно',
+      'приложение вылетает',
+      'не импортируется конфиг'
     ];
     suggestions.forEach(s => {
       const b = document.createElement('button');
@@ -321,5 +324,10 @@ DJARB.initDiagPage = function () {
       b.addEventListener('click', () => handleQuery(s));
       chipRow.appendChild(b);
     });
+  }
+  
+  // Initialize smart diagnostics for enhanced NLP
+  if (typeof DJARB.initSmartDiagnostics === 'function') {
+    DJARB.initSmartDiagnostics();
   }
 };

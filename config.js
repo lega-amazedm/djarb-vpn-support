@@ -5,30 +5,33 @@ DJARB.USERS = {
   'maga':    'b2083bb5b2095c4cad3118bcf94546ba8204c028314a77466320b78d07d038e',
   'alberto': '1005cae2d5c6df18926a891950c4fa237ccfe51c5a238614e5daece0a9f1a8e5',
   'oksana':  '5e7f95ef86da0b2401079d615ed8a7e51ea885a13417d041388a14c2d15bcc9c',
-  'dina':    '0eba8cada05effff8d2dc65ebf09ce6de3ae2618fc1f1eb73ab6547fc8fed879'
+  'dina':    '0eba8cada05effff8d2dc65ebf09ce6de3ae2618fc1f1eb73ab6547fc8fed879',
+  'gufik':   '301d46f3fb433c3779ba4d348b5b2d354d009b582ae20d12f22c4c6e06d87228'
 };
 
-DJARB.DEFAULT_SUB = 'https://subikapi.org/c728b3kw/sub/bef018a8-4fce-4ed1-8d94-49ebe55a0431';
+DJARB.DEFAULT_SUB = '';
 
 DJARB.PROFILES = {
-  'said':    { name:'Саид',    subLink: DJARB.DEFAULT_SUB },
-  'maga':    { name:'Мага',    subLink: DJARB.DEFAULT_SUB },
-  'alberto': { name:'Альберто',subLink: DJARB.DEFAULT_SUB },
-  'oksana':  { name:'Оксана',  subLink: DJARB.DEFAULT_SUB },
-  'dina':    { name:'Дина',    subLink: DJARB.DEFAULT_SUB }
+  'said':    { name:'Саид',    subLink: '' },
+  'maga':    { name:'Мага',    subLink: '' },
+  'alberto': { name:'Альберто',subLink: '' },
+  'oksana':  { name:'Оксана',  subLink: '' },
+  'dina':    { name:'Дина',    subLink: '' },
+  'gufik':   { name:'Gufik',   subLink: '' }
 };
 
 DJARB.SESSION_KEY = 'djarb_auth_v1';
 DJARB.THEME_KEY = 'djarb_theme_v1';
 
 DJARB.NAV = [
-  { href:'index.html', id:'home', label:'Главная' },
-  { href:'diag.html', id:'search', label:'Диагностика' },
-  { href:'servers.html', id:'servers', label:'Сервера' },
-  { href:'fix.html', id:'fix', label:'VPN не работает' },
+  { href:'index.html', id:'home', label:'Главная', primary:true },
+  { href:'diag.html', id:'search', label:'Диагностика', primary:true },
+  { href:'fix.html', id:'fix', label:'VPN не работает', primary:true },
   { href:'vless.html', id:'vless', label:'VLESS' },
   { href:'happ.html', id:'apps', label:'Happ' },
   { href:'incy.html', id:'incy', label:'Incy' },
+  { href:'compare.html', id:'compare', label:'Сравнение' },
+  { href:'support.html', id:'support', label:'Поддержка' },
   { href:'setup.html', id:'setup', label:'Настройка' },
   { href:'glossary.html', id:'glossary', label:'Термины' }
 ];

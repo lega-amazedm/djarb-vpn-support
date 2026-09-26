@@ -63,9 +63,15 @@ DJARB.loginGateHtml = function () {
 };
 
 DJARB.headerHtml = function (activePage) {
-  const links = (DJARB.NAV || []).map(item =>
+  const NAV = DJARB.NAV || [];
+  const primaryLinks = NAV.filter(item => item.primary).map(item =>
     `<a href="${item.href}"${item.id === activePage ? ' class="active"' : ''}>${item.label}</a>`
   ).join('\n      ');
+  const moreItems = NAV.filter(item => !item.primary && item.id !== 'support');
+  const moreActive = moreItems.some(item => item.id === activePage);
+  const moreLinks = moreItems.map(item =>
+    `<a href="${item.href}"${item.id === activePage ? ' class="active"' : ''}>${item.label}</a>`
+  ).join('\n        ');
   return `
   <header class="nav">
     <div class="wrap nav-inner">
@@ -74,9 +80,23 @@ DJARB.headerHtml = function (activePage) {
         <span>DJARB<br><small>VPN Support</small></span>
       </a>
       <nav class="links">
-      ${links}
+      ${primaryLinks}
+      <div class="nav-dropdown" id="navDropdown">
+        <button type="button" class="nav-dropdown-btn${moreActive ? ' active' : ''}" id="navDropdownBtn" aria-haspopup="true" aria-expanded="false">
+          Разделы
+          <svg class="dd-caret" width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-dropdown-menu" id="navDropdownMenu" role="menu">
+        ${moreLinks}
+        </div>
+      </div>
       </nav>
       <div class="nav-actions">
+        <a href="support.html" class="admin-btn${activePage === 'support' ? ' active' : ''}" title="Рабочее место команды поддержки">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          <span>Панель поддержки</span>
+        </a>
+        <span class="nav-sep" aria-hidden="true"></span>
         <div class="status-pill"><span class="status-dot"></span> Поддержка на связи</div>
         <button class="theme-btn" id="themeBtn" type="button" aria-label="Переключить тему">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"/></svg>
@@ -99,14 +119,38 @@ DJARB.mobileMenuHtml = function (activePage) {
     `<a href="${item.href}"${item.id === activePage ? ' class="active"' : ''}><span>${item.label}</span><span class="arrow">→</span></a>`
   ).join('\n    ');
   return `
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
   <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-menu-inner">
+      <div class="mm-search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input type="text" placeholder="Поиск по сайту..." id="mobileSearch">
+      </div>
+      <div class="mm-section-title">Навигация</div>
     ${links}
+      <div class="mm-section-title">Быстрые действия</div>
+      <div class="mm-quick-actions">
+        <a href="diag.html" class="mm-quick-btn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span>Диагностика</span>
+        </a>
+        <a href="servers.html" class="mm-quick-btn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="6" rx="1.6" stroke="currentColor" stroke-width="1.7"/><rect x="3" y="14" width="18" height="6" rx="1.6" stroke="currentColor" stroke-width="1.7"/><circle cx="7" cy="7" r="1" fill="currentColor"/><circle cx="7" cy="17" r="1" fill="currentColor"/></svg>
+          <span>Сервера</span>
+        </a>
+        <a href="support.html" class="mm-quick-btn mm-quick-btn-accent">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+          <span>Панель поддержки</span>
+        </a>
+      </div>
       <div class="mm-pill status-pill"><span class="status-dot"></span> Поддержка на связи</div>
       <button class="logout-btn" type="button" data-logout>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 4h3a2 2 0 012 2v12a2 2 0 01-2 2h-3M10 17l-5-5 5-5M5 12h11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         Выйти из аккаунта
       </button>
+      <div class="mm-footer">
+        <p>DJARB VPN Support © 2026</p>
+      </div>
     </div>
   </div>`;
 };
@@ -155,22 +199,86 @@ DJARB.bindTheme = function () {
   }
 };
 
+/* ---------------- "Разделы" dropdown (desktop nav) ---------------- */
+DJARB.bindNavDropdown = function () {
+  const wrap = document.getElementById('navDropdown');
+  const btn = document.getElementById('navDropdownBtn');
+  const menu = document.getElementById('navDropdownMenu');
+  if (!wrap || !btn || !menu) return;
+  function close() {
+    wrap.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+  }
+  function open() {
+    wrap.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+  }
+  btn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    if (wrap.classList.contains('open')) close(); else open();
+  });
+  document.addEventListener('click', function (e) {
+    if (!wrap.contains(e.target)) close();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') close();
+  });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+};
+
 /* ---------------- mobile menu + burger ---------------- */
 DJARB.bindMobileMenu = function () {
   const burgerBtn = document.getElementById('burgerBtn');
   const mobileMenu = document.getElementById('mobileMenu');
+  const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
   if (!burgerBtn || !mobileMenu) return;
   function closeMobileMenu() {
     mobileMenu.classList.remove('open');
+    mobileMenuOverlay.classList.remove('open');
     burgerBtn.classList.remove('open');
     burgerBtn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+  function openMobileMenu() {
+    mobileMenu.classList.add('open');
+    mobileMenuOverlay.classList.add('open');
+    burgerBtn.classList.add('open');
+    burgerBtn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
   }
   burgerBtn.addEventListener('click', () => {
-    const open = mobileMenu.classList.toggle('open');
-    burgerBtn.classList.toggle('open', open);
-    burgerBtn.setAttribute('aria-expanded', String(open));
+    if (mobileMenu.classList.contains('open')) {
+      closeMobileMenu();
+    } else {
+      openMobileMenu();
+    }
   });
+  mobileMenuOverlay.addEventListener('click', closeMobileMenu);
   mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobileMenu));
+  
+  // Mobile search functionality
+  const mobileSearch = document.getElementById('mobileSearch');
+  if (mobileSearch) {
+    mobileSearch.addEventListener('input', function(e) {
+      const searchTerm = e.target.value.toLowerCase();
+      const links = mobileMenu.querySelectorAll('a:not(.mm-quick-btn)');
+      links.forEach(link => {
+        const text = link.textContent.toLowerCase();
+        if (text.includes(searchTerm)) {
+          link.style.display = 'flex';
+        } else {
+          link.style.display = 'none';
+        }
+      });
+    });
+  }
+  
+  // Keyboard navigation
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+      closeMobileMenu();
+    }
+  });
 };
 
 /* ---------------- honest client-side content protection ----------------
@@ -329,6 +437,7 @@ DJARB.initLayout = function (opts) {
 
   if (typeof DJARB.bindAuth === 'function') DJARB.bindAuth();
   DJARB.bindTheme();
+  DJARB.bindNavDropdown();
   DJARB.bindMobileMenu();
   DJARB.bindTabs();
   DJARB.bindScrollFx();

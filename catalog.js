@@ -128,22 +128,86 @@ DJARB.openAndScroll = function (id) {
 DJARB.mountFilter = function (inputId, countId, containerId, items) {
   const input = document.getElementById(inputId);
   const count = document.getElementById(countId);
+  let activeSevFilter = null;
+  
+  function highlightMatch(text, query) {
+    if (!query) return text;
+    const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+    return text.replace(regex, '<span class="search-highlight">$1</span>');
+  }
+  
   function apply() {
     const q = (input && input.value || '').trim().toLowerCase();
-    const filtered = !q ? items : items.filter(it => {
+    const filtered = items.filter(it => {
+      // Severity filter
+      if (activeSevFilter && it.sev !== activeSevFilter) return false;
+      
+      // Text search
+      if (!q) return true;
       const hay = [it.title, it.symptom, it.cause, it.plain, it.log, it.code, it.group, (it.fix || []).join(' ')].join(' ').toLowerCase();
       return hay.includes(q);
     });
-    DJARB.renderCatalog(containerId, filtered);
+    
+    DJARB.renderCatalog(containerId, filtered, q);
     if (count) count.textContent = filtered.length + ' из ' + items.length;
+    
     if (location.hash) {
       const id = location.hash.slice(1);
       if (document.getElementById(id)) DJARB.openAndScroll(id);
     }
   }
+  
+  // Enhanced render with highlighting
+  const originalRender = DJARB.renderCatalog;
+  DJARB.renderCatalog = function(containerId, items, query = '') {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    
+    if (!items.length) {
+      container.innerHTML = `
+        <div class="no-results">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <h4>Ничего не найдено</h4>
+          <p>Попробуйте другие ключевые слова или сбросьте фильтры</p>
+        </div>`;
+      return;
+    }
+    
+    const groups = DJARB.groupBy(items, 'group');
+    let html = '';
+    Object.keys(groups).forEach(gName => {
+      html += `<div class="cat-group-label">${gName}</div>`;
+      groups[gName].forEach(it => { 
+        const highlightedItem = {...it};
+        if (query) {
+          highlightedItem.title = highlightMatch(it.title, query);
+          highlightedItem.symptom = highlightMatch(it.symptom || '', query);
+          highlightedItem.code = highlightMatch(it.code || '', query);
+        }
+        html += DJARB.itemHtml(highlightedItem);
+      });
+    });
+    container.innerHTML = html;
+  };
+  
   DJARB.bindCatalogOnce();
   if (input) input.addEventListener('input', apply);
   apply();
+  
+  // Reset function
+  DJARB.resetFilter = function() {
+    if (input) input.value = '';
+    activeSevFilter = null;
+    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+    apply();
+  };
+  
+  // Severity filter
+  DJARB.setSeverityFilter = function(sev) {
+    activeSevFilter = sev === activeSevFilter ? null : sev;
+    apply();
+  };
+  
   window.addEventListener('hashchange', () => {
     const id = location.hash.slice(1);
     if (id && document.getElementById(id)) DJARB.openAndScroll(id);

@@ -203,5 +203,1817 @@ DJARB.INCY = [
         'Закрепите приложение в списке недавних задач (иконка «замка»), если такая функция поддерживается оболочкой.',
         'Проверьте настройки экономии заряда конкретно для этого приложения — часто там есть отдельный переключатель «без ограничений».'
       ]
+    },
+    {
+      id:'i-subscription-update', group:'Подписка', sev:'info',
+      title:'Подписка не обновляется автоматически',
+      code:'SUB-UPDATE', symptom:'Список серверов остаётся старым, хотя подписка должна обновляться.',
+      cause:'Автообновление отключено или интервал слишком большой.',
+      plain:'Приложение не проверяет новые сервера автоматически.',
+      fix:[
+        'Включите автообновление в настройках.',
+        'Уменьшите интервал обновления.',
+        'Обновите вручную через меню.'
+      ]
+    },
+    {
+      id:'i-subscription-import', group:'Подписка', sev:'warn',
+      title:'Подписка не импортируется',
+      code:'SUB-IMPORT', symptom:'Ссылка на подписку не добавляется.',
+      cause:'Ссылка неправильная или приложение не поддерживает формат.',
+      plain:'Приложение не понимает ссылку на подписку.',
+      fix:[
+        'Проверьте ссылку в браузере.',
+        'Используйте другой формат подписки.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-subscription-export', group:'Подписка', sev:'info',
+      title:'Нельзя экспортировать подписку',
+      code:'SUB-EXPORT', symptom:'Нет опции экспорта подписки.',
+      cause:'Функция не реализована в текущей версии.',
+      plain:'Экспорт подписки недоступен.',
+      fix:[
+        'Обновите приложение.',
+        'Используйте ручной импорт.',
+        'Сохраните ссылку отдельно.'
+      ]
+    },
+    {
+      id:'i-profile-rename', group:'Интерфейс', sev:'info',
+      title:'Нельзя переименовать профиль',
+      code:'RENAME', symptom:'Нет опции переименования.',
+      cause:'Функция не реализована.',
+      plain:'Переименование недоступно.',
+      fix:[
+        'Обновите приложение.',
+        'Используйте сторонние инструменты.',
+        'Принять как есть.'
+      ]
+    },
+    {
+      id:'i-profile-duplicate', group:'Интерфейс', sev:'info',
+      title:'Нельзя дублировать профиль',
+      code:'DUPLICATE', symptom:'Нет опции дублирования.',
+      cause:'Функция не реализована.',
+      plain:'Дублирование недоступно.',
+      fix:[
+        'Обновите приложение.',
+        'Импортировать повторно.',
+        'Использовать копирование настроек.'
+      ]
+    },
+    {
+      id:'i-profile-export', group:'Интерфейс', sev:'info',
+      title:'Нельзя экспортировать профиль',
+      code:'PROFILE-EXPORT', symptom:'Нет опции экспорта.',
+      cause:'Функция не реализована.',
+      plain:'Экспорт профиля недоступен.',
+      fix:[
+        'Обновите приложение.',
+        'Использовать ручное копирование.',
+        'Сохранить настройки отдельно.'
+      ]
+    },
+    {
+      id:'i-profile-share', group:'Интерфейс', sev:'info',
+      title:'Нельзя поделиться профилем',
+      code:'SHARE', symptom:'Нет опции шаринга.',
+      cause:'Функция не реализована.',
+      plain:'Шаринг недоступен.',
+      fix:[
+        'Обновите приложение.',
+        'Использовать QR-код.',
+        'Поделиться ссылкой вручную.'
+      ]
+    },
+    {
+      id:'i-stats-detailed', group:'Диагностика', sev:'info',
+      title:'Нет детальной статистики',
+      code:'STATS-DET', symptom:'Статистика только базовая.',
+      cause:'Функция не реализована.',
+      plain:'Детальная статистика недоступна.',
+      fix:[
+        'Обновите приложение.',
+        'Использовать внешние инструменты.',
+        'Принять как есть.'
+      ]
+    },
+    {
+      id:'i-stats-realtime', group:'Диагностика', sev:'info',
+      title:'Нет реалтайм статистики',
+      code:'STATS-RT', symptom:'Статистика не обновляется в реальном времени.',
+      cause:'Функция не реализована.',
+      plain:'Реалтайм статистика недоступна.',
+      fix:[
+        'Обновите приложение.',
+        'Обновлять вручную.',
+        'Использовать системные средства.'
+      ]
+    },
+    {
+      id:'i-log-filter', group:'Диагностика', sev:'info',
+      title:'Нет фильтрации логов',
+      code:'LOG-FILTER', symptom:'Логи нельзя фильтровать.',
+      cause:'Функция не реализована.',
+      plain:'Фильтрация логов недоступна.',
+      fix:[
+        'Обновите приложение.',
+        'Использовать текстовый поиск.',
+        'Экспортировать и фильтровать.'
+      ]
+    },
+    {
+      id:'i-log-search', group:'Диагностика', sev:'info',
+      title:'Нет поиска по логам',
+      code:'LOG-SEARCH', symptom:'Логи нельзя искать.',
+      cause:'Функция не реализована.',
+      plain:'Поиск по логам недоступен.',
+      fix:[
+        'Обновите приложение.',
+        'Экспортировать и искать.',
+        'Использовать внешние средства.'
+      ]
+    },
+    {
+      id:'i-settings-backup', group:'Настройки', sev:'info',
+      title:'Нет бэкапа настроек',
+      code:'BACKUP', symptom:'Настройки нельзя сохранить.',
+      cause:'Функция не реализована.',
+      plain:'Бэкап настроек недоступен.',
+      fix:[
+        'Обновите приложение.',
+        'Сохранять вручную.',
+        'Использовать системный бэкап.'
+      ]
+    },
+    {
+      id:'i-settings-restore', group:'Настройки', sev:'info',
+      title:'Нет восстановления настроек',
+      code:'RESTORE', symptom:'Настройки нельзя восстановить.',
+      cause:'Функция не реализована.',
+      plain:'Восстановление настроек недоступно.',
+      fix:[
+        'Обновите приложение.',
+        'Настраивать заново.',
+        'Использовать системный бэкап.'
+      ]
+    },
+    {
+      id:'i-settings-reset', group:'Настройки', sev:'info',
+      title:'Нет сброса настроек',
+      code:'RESET', symptom:'Настройки нельзя сбросить.',
+      cause:'Функция не реализована.',
+      plain:'Сброс настроек недоступен.',
+      fix:[
+        'Обновите приложение.',
+        'Переустановить приложение.',
+        'Очистить данные вручную.'
+      ]
+    },
+    {
+      id:'i-theme-change', group:'Интерфейс', sev:'info',
+      title:'Нельзя сменить тему',
+      code:'THEME', symptom:'Тема только одна.',
+      cause:'Функция не реализована.',
+      plain:'Смена темы недоступна.',
+      fix:[
+        'Обновите приложение.',
+        'Использовать системную тему.',
+        'Принять как есть.'
+      ]
+    },
+    {
+      id:'i-language-change', group:'Интерфейс', sev:'info',
+      title:'Нельзя сменить язык',
+      code:'LANG', symptom:'Язык только один.',
+      cause:'Функция не реализована.',
+      plain:'Смена языка недоступна.',
+      fix:[
+        'Обновите приложение.',
+        'Использовать системный язык.',
+        'Принять как есть.'
+      ]
+    },
+    {
+      id:'i-font-size', group:'Интерфейс', sev:'info',
+      title:'Нельзя изменить размер шрифта',
+      code:'FONT', symptom:'Размер шрифта фиксированный.',
+      cause:'Функция не реализована.',
+      plain:'Изменение размера недоступно.',
+      fix:[
+        'Обновите приложение.',
+        'Использовать системные настройки.',
+        'Принять как есть.'
+      ]
+    },
+    {
+      id:'i-icon-change', group:'Интерфейс', sev:'info',
+      title:'Нельзя изменить иконку',
+      code:'ICON', symptom:'Иконка фиксированная.',
+      cause:'Функция не реализована.',
+      plain:'Изменение иконки недоступно.',
+      fix:[
+        'Обновите приложение.',
+        'Использовать сторонние лаунчеры.',
+        'Принять как есть.'
+      ]
+    },
+    {
+      id:'i-notification-style', group:'Интерфейс', sev:'info',
+      title:'Нельзя изменить стиль уведомлений',
+      code:'NOTIF-STYLE', symptom:'Уведомления одного стиля.',
+      cause:'Функция не реализована.',
+      plain:'Изменение стиля недоступно.',
+      fix:[
+        'Обновите приложение.',
+        'Использовать системные настройки.',
+        'Принять как есть.'
+      ]
+    },
+    {
+      id:'i-shortcut-create', group:'Интерфейс', sev:'info',
+      title:'Нельзя создать ярлык',
+      code:'SHORTCUT', symptom:'Нет опции создания ярлыка.',
+      cause:'Функция не реализована.',
+      plain:'Создание ярлыка недоступно.',
+      fix:[
+        'Обновите приложение.',
+        'Использовать системные средства.',
+        'Принять как есть.'
+      ]
+    },
+    {
+      id:'i-widget-add', group:'Интерфейс', sev:'info',
+      title:'Нельзя добавить виджет',
+      code:'WIDGET', symptom:'Виджеты недоступны.',
+      cause:'Функция не реализована.',
+      plain:'Виджеты недоступны.',
+      fix:[
+        'Обновите приложение.',
+        'Использовать ярлыки.',
+        'Принять как есть.'
+      ]
+    },
+    {
+      id:'i-tile-add', group:'Интерфейс', sev:'info',
+      title:'Нельзя добавить тайл',
+      code:'TILE', symptom:'Тайлы недоступны.',
+      cause:'Функция не реализована.',
+      plain:'Тайлы недоступны.',
+      fix:[
+        'Обновите приложение.',
+        'Использовать ярлыки.',
+        'Принять как есть.'
+      ]
+    },
+    {
+      id:'i-taskbar-integration', group:'Интерфейс', sev:'info',
+      title:'Нет интеграции с таскбаром',
+      code:'TASKBAR', symptom:'Нет иконки в таскбаре.',
+      cause:'Функция не реализована.',
+      plain:'Интеграция с таскбаром недоступна.',
+      fix:[
+        'Обновите приложение.',
+        'Использовать трей.',
+        'Принять как есть.'
+      ]
+    },
+    {
+      id:'i-tray-icon', group:'Интерфейс', sev:'info',
+      title:'Нет иконки в трее',
+      code:'TRAY', symptom:'Нет иконки в системном трее.',
+      cause:'Функция не реализована.',
+      plain:'Иконка в трее недоступна.',
+      fix:[
+        'Обновите приложение.',
+        'Использовать таскбар.',
+        'Принять как есть.'
+      ]
+    },
+    {
+      id:'i-sound-notification', group:'Интерфейс', sev:'info',
+      title:'Нет звуковых уведомлений',
+      code:'SOUND', symptom:'Уведомления без звука.',
+      cause:'Функция не реализована.',
+      plain:'Звуковые уведомления недоступны.',
+      fix:[
+        'Обновите приложение.',
+        'Использовать системные звуки.',
+        'Принять как есть.'
+      ]
+    },
+    {
+      id:'i-vibration', group:'Интерфейс', sev:'info',
+      title:'Нет вибрации',
+      code:'VIB', symptom:'Уведомления без вибрации.',
+      cause:'Функция не реализована.',
+      plain:'Вибрация недоступна.',
+      fix:[
+        'Обновите приложение.',
+        'Использовать системные настройки.',
+        'Принять как есть.'
+      ]
+    },
+    {
+      id:'i-led-notification', group:'Интерфейс', sev:'info',
+      title:'Нет LED уведомлений',
+      code:'LED', symptom:'Нет мигания LED.',
+      cause:'Функция не реализована.',
+      plain:'LED уведомления недоступны.',
+      fix:[
+        'Обновите приложение.',
+        'Использовать системные настройки.',
+        'Принять как есть.'
+      ]
+    },
+    {
+      id:'i-lock-screen', group:'Интерфейс', sev:'info',
+      title:'Нет уведомлений на экране блокировки',
+      code:'LOCK', symptom:'Уведомления не показываются на экране блокировки.',
+      cause:'Функция не реализована.',
+      plain:'Уведомления на экране блокировки недоступны.',
+      fix:[
+        'Обновите приложение.',
+        'Использовать системные настройки.',
+        'Принять как есть.'
+      ]
+    },
+    {
+      id:'i-wake-lock', group:'Фоновая работа', sev:'info',
+      title:'Проблемы с wake lock',
+      code:'WAKE', symptom:'Приложение засыпает.',
+      cause:'Wake lock настроен неверно.',
+      plain:'Приложение не удерживает процессор.',
+      fix:[
+        'Проверьте wake lock.',
+        'Включите если нужно.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-wifi-lock', group:'Фоновая работа', sev:'info',
+      title:'Проблемы с Wi-Fi lock',
+      code:'WIFI-LOCK', symptom:'Wi-Fi отключается.',
+      cause:'Wi-Fi lock настроен неверно.',
+      plain:'Приложение не удерживает Wi-Fi.',
+      fix:[
+        'Проверьте Wi-Fi lock.',
+        'Включите если нужно.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-partial-wake-lock', group:'Фоновая работа', sev:'info',
+      title:'Проблемы с partial wake lock',
+      code:'PARTIAL', symptom:'CPU засыпает.',
+      cause:'Partial wake lock настроен неверно.',
+      plain:'Приложение не удерживает CPU.',
+      fix:[
+        'Проверьте partial wake lock.',
+        'Включите если нужно.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-screen-lock', group:'Фоновая работа', sev:'info',
+      title:'Проблемы с screen lock',
+      code:'SCREEN', symptom:'Экран гаснет.',
+      cause:'Screen lock настроен неверно.',
+      plain:'Приложение не удерживает экран.',
+      fix:[
+        'Проверьте screen lock.',
+        'Включите если нужно.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-foreground-service', group:'Фоновая работа', sev:'info',
+      title:'Проблемы с foreground service',
+      code:'FG', symptom:'Сервис останавливается.',
+      cause:'Foreground service настроен неверно.',
+      plain:'Фоновый сервис не работает.',
+      fix:[
+        'Проверьте foreground service.',
+        'Включите уведомление.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-channel', group:'Интерфейс', sev:'info',
+      title:'Проблемы с notification channel',
+      code:'NOTIF-CH', symptom:'Уведомления не показываются.',
+      cause:'Notification channel настроен неверно.',
+      plain:'Канал уведомлений не работает.',
+      fix:[
+        'Проверьте notification channel.',
+        'Создайте канал.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-group', group:'Интерфейс', sev:'info',
+      title:'Проблемы с notification group',
+      code:'NOTIF-GRP', symptom:'Уведомления не группируются.',
+      cause:'Notification group настроен неверно.',
+      plain:'Группировка уведомлений не работает.',
+      fix:[
+        'Проверьте notification group.',
+        'Создайте группу.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-category', group:'Интерфейс', sev:'info',
+      title:'Проблемы с notification category',
+      code:'NOTIF-CAT', symptom:'Категория уведомлений не работает.',
+      cause:'Notification category настроен неверно.',
+      plain:'Категория уведомлений не работает.',
+      fix:[
+        'Проверьте notification category.',
+        'Установите категорию.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-priority', group:'Интерфейс', sev:'info',
+      title:'Проблемы с приоритетом уведомлений',
+      code:'NOTIF-PRIO', symptom:'Приоритет уведомлений не работает.',
+      cause:'Notification priority настроен неверно.',
+      plain:'Приоритет уведомлений не работает.',
+      fix:[
+        'Проверьте notification priority.',
+        'Установите приоритет.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-visibility', group:'Интерфейс', sev:'info',
+      title:'Проблемы с видимостью уведомлений',
+      code:'NOTIF-VIS', symptom:'Видимость уведомлений не работает.',
+      cause:'Notification visibility настроен неверно.',
+      plain:'Видимость уведомлений не работает.',
+      fix:[
+        'Проверьте notification visibility.',
+        'Установите видимость.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-ongoing', group:'Интерфейс', sev:'info',
+      title:'Проблемы с ongoing уведомлениями',
+      code:'NOTIF-ONG', symptom:'Ongoing уведомления не работают.',
+      cause:'Notification ongoing настроен неверно.',
+      plain:'Ongoing уведомления не работают.',
+      fix:[
+        'Проверьте notification ongoing.',
+        'Включите ongoing.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-auto-cancel', group:'Интерфейс', sev:'info',
+      title:'Проблемы с auto cancel уведомлений',
+      code:'NOTIF-AUTO', symptom:'Auto cancel не работает.',
+      cause:'Notification auto cancel настроен неверно.',
+      plain:'Auto cancel уведомлений не работает.',
+      fix:[
+        'Проверьте notification auto cancel.',
+        'Включите если нужно.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-timestamp', group:'Интерфейс', sev:'info',
+      title:'Проблемы с timestamp уведомлений',
+      code:'NOTIF-TIME', symptom:'Timestamp не показывается.',
+      cause:'Notification timestamp настроен неверно.',
+      plain:'Timestamp уведомлений не работает.',
+      fix:[
+        'Проверьте notification timestamp.',
+        'Включите timestamp.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-show-when', group:'Интерфейс', sev:'info',
+      title:'Проблемы с show when уведомлений',
+      code:'NOTIF-WHEN', symptom:'Show when не работает.',
+      cause:'Notification show when настроен неверно.',
+      plain:'Show when уведомлений не работает.',
+      fix:[
+        'Проверьте notification show when.',
+        'Установите show when.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-small-icon', group:'Интерфейс', sev:'info',
+      title:'Проблемы с small icon уведомлений',
+      code:'NOTIF-ICON', symptom:'Small icon не показывается.',
+      cause:'Notification small icon настроен неверно.',
+      plain:'Small icon уведомлений не работает.',
+      fix:[
+        'Проверьте notification small icon.',
+        'Установите icon.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-large-icon', group:'Интерфейс', sev:'info',
+      title:'Проблемы с large icon уведомлений',
+      code:'NOTIF-LARGE', symptom:'Large icon не показывается.',
+      cause:'Notification large icon настроен неверно.',
+      plain:'Large icon уведомлений не работает.',
+      fix:[
+        'Проверьте notification large icon.',
+        'Установите icon.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-big-text', group:'Интерфейс', sev:'info',
+      title:'Проблемы с big text уведомлений',
+      code:'NOTIF-TEXT', symptom:'Big text не показывается.',
+      cause:'Notification big text настроен неверно.',
+      plain:'Big text уведомлений не работает.',
+      fix:[
+        'Проверьте notification big text.',
+        'Включите big text.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-big-picture', group:'Интерфейс', sev:'info',
+      title:'Проблемы с big picture уведомлений',
+      code:'NOTIF-PIC', symptom:'Big picture не показывается.',
+      cause:'Notification big picture настроен неверно.',
+      plain:'Big picture уведомлений не работает.',
+      fix:[
+        'Проверьте notification big picture.',
+        'Включите big picture.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-inbox', group:'Интерфейс', sev:'info',
+      title:'Проблемы с inbox уведомлений',
+      code:'NOTIF-INBOX', symptom:'Inbox не показывается.',
+      cause:'Notification inbox настроен неверно.',
+      plain:'Inbox уведомлений не работает.',
+      fix:[
+        'Проверьте notification inbox.',
+        'Включите inbox.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-messaging', group:'Интерфейс', sev:'info',
+      title:'Проблемы с messaging уведомлений',
+      code:'NOTIF-MSG', symptom:'Messaging не показывается.',
+      cause:'Notification messaging настроен неверно.',
+      plain:'Messaging уведомлений не работает.',
+      fix:[
+        'Проверьте notification messaging.',
+        'Включите messaging.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-media', group:'Интерфейс', sev:'info',
+      title:'Проблемы с media уведомлений',
+      code:'NOTIF-MEDIA', symptom:'Media не показывается.',
+      cause:'Notification media настроен неверно.',
+      plain:'Media уведомлений не работает.',
+      fix:[
+        'Проверьте notification media.',
+        'Включите media.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-progress', group:'Интерфейс', sev:'info',
+      title:'Проблемы с progress уведомлений',
+      code:'NOTIF-PROG', symptom:'Progress не показывается.',
+      cause:'Notification progress настроен неверно.',
+      plain:'Progress уведомлений не работает.',
+      fix:[
+        'Проверьте notification progress.',
+        'Включите progress.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-actions', group:'Интерфейс', sev:'info',
+      title:'Проблемы с actions уведомлений',
+      code:'NOTIF-ACT', symptom:'Actions не показываются.',
+      cause:'Notification actions настроены неверно.',
+      plain:'Actions уведомлений не работают.',
+      fix:[
+        'Проверьте notification actions.',
+        'Добавьте actions.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-remote-input', group:'Интерфейс', sev:'info',
+      title:'Проблемы с remote input уведомлений',
+      code:'NOTIF-INPUT', symptom:'Remote input не работает.',
+      cause:'Notification remote input настроен неверно.',
+      plain:'Remote input уведомлений не работает.',
+      fix:[
+        'Проверьте notification remote input.',
+        'Включите remote input.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-person', group:'Интерфейс', sev:'info',
+      title:'Проблемы с person уведомлений',
+      code:'NOTIF-PERSON', symptom:'Person не показывается.',
+      cause:'Notification person настроен неверно.',
+      plain:'Person уведомлений не работает.',
+      fix:[
+        'Проверьте notification person.',
+        'Добавьте person.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-color', group:'Интерфейс', sev:'info',
+      title:'Проблемы с color уведомлений',
+      code:'NOTIF-COLOR', symptom:'Color не применяется.',
+      cause:'Notification color настроен неверно.',
+      plain:'Color уведомлений не работает.',
+      fix:[
+        'Проверьте notification color.',
+        'Установите color.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-vibrate', group:'Интерфейс', sev:'info',
+      title:'Проблемы с vibrate уведомлений',
+      code:'NOTIF-VIB', symptom:'Vibrate не работает.',
+      cause:'Notification vibrate настроен неверно.',
+      plain:'Vibrate уведомлений не работает.',
+      fix:[
+        'Проверьте notification vibrate.',
+        'Включите vibrate.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-sound', group:'Интерфейс', sev:'info',
+      title:'Проблемы со sound уведомлений',
+      code:'NOTIF-SND', symptom:'Sound не работает.',
+      cause:'Notification sound настроен неверно.',
+      plain:'Sound уведомлений не работает.',
+      fix:[
+        'Проверьте notification sound.',
+        'Установите sound.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-lights', group:'Интерфейс', sev:'info',
+      title:'Проблемы с lights уведомлений',
+      code:'NOTIF-LIGHT', symptom:'Lights не работают.',
+      cause:'Notification lights настроен неверно.',
+      plain:'Lights уведомлений не работают.',
+      fix:[
+        'Проверьте notification lights.',
+        'Включите lights.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-group-key', group:'Интерфейс', sev:'info',
+      title:'Проблемы с group key уведомлений',
+      code:'NOTIF-GKEY', symptom:'Group key не работает.',
+      cause:'Notification group key настроен неверно.',
+      plain:'Group key уведомлений не работает.',
+      fix:[
+        'Проверьте notification group key.',
+        'Установите group key.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-sort-key', group:'Интерфейс', sev:'info',
+      title:'Проблемы с sort key уведомлений',
+      code:'NOTIF-SKEY', symptom:'Sort key не работает.',
+      cause:'Notification sort key настроен неверно.',
+      plain:'Sort key уведомлений не работает.',
+      fix:[
+        'Проверьте notification sort key.',
+        'Установите sort key.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-extras', group:'Интерфейс', sev:'info',
+      title:'Проблемы с extras уведомлений',
+      code:'NOTIF-EXTRA', symptom:'Extras не работают.',
+      cause:'Notification extras настроены неверно.',
+      plain:'Extras уведомлений не работают.',
+      fix:[
+        'Проверьте notification extras.',
+        'Добавьте extras.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-intent', group:'Интерфейс', sev:'info',
+      title:'Проблемы с intent уведомлений',
+      code:'NOTIF-INTENT', symptom:'Intent не работает.',
+      cause:'Notification intent настроен неверно.',
+      plain:'Intent уведомлений не работает.',
+      fix:[
+        'Проверьте notification intent.',
+        'Установите intent.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-flags', group:'Интерфейс', sev:'info',
+      title:'Проблемы с flags уведомлений',
+      code:'NOTIF-FLAGS', symptom:'Flags не работают.',
+      cause:'Notification flags настроены неверно.',
+      plain:'Flags уведомлений не работают.',
+      fix:[
+        'Проверьте notification flags.',
+        'Установите flags.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-defaults', group:'Интерфейс', sev:'info',
+      title:'Проблемы с defaults уведомлений',
+      code:'NOTIF-DEF', symptom:'Defaults не работают.',
+      cause:'Notification defaults настроены неверно.',
+      plain:'Defaults уведомлений не работают.',
+      fix:[
+        'Проверьте notification defaults.',
+        'Установите defaults.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-delete-intent', group:'Интерфейс', sev:'info',
+      title:'Проблемы с delete intent уведомлений',
+      code:'NOTIF-DEL', symptom:'Delete intent не работает.',
+      cause:'Notification delete intent настроен неверно.',
+      plain:'Delete intent уведомлений не работает.',
+      fix:[
+        'Проверьте notification delete intent.',
+        'Установите delete intent.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-full-screen', group:'Интерфейс', sev:'info',
+      title:'Проблемы с full screen уведомлений',
+      code:'NOTIF-FULL', symptom:'Full screen не работает.',
+      cause:'Notification full screen настроен неверно.',
+      plain:'Full screen уведомлений не работает.',
+      fix:[
+        'Проверьте notification full screen.',
+        'Включите full screen.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-heads-up', group:'Интерфейс', sev:'info',
+      title:'Проблемы с heads up уведомлений',
+      code:'NOTIF-HEADS', symptom:'Heads up не работает.',
+      cause:'Notification heads up настроен неверно.',
+      plain:'Heads up уведомлений не работает.',
+      fix:[
+        'Проверьте notification heads up.',
+        'Включите heads up.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-content-intent', group:'Интерфейс', sev:'info',
+      title:'Проблемы с content intent уведомлений',
+      code:'NOTIF-CONT', symptom:'Content intent не работает.',
+      cause:'Notification content intent настроен неверно.',
+      plain:'Content intent уведомлений не работает.',
+      fix:[
+        'Проверьте notification content intent.',
+        'Установите content intent.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-delete-intent', group:'Интерфейс', sev:'info',
+      title:'Проблемы с delete intent уведомлений',
+      code:'NOTIF-DEL', symptom:'Delete intent не работает.',
+      cause:'Notification delete intent настроен неверно.',
+      plain:'Delete intent уведомлений не работает.',
+      fix:[
+        'Проверьте notification delete intent.',
+        'Установите delete intent.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-remote-input-history', group:'Интерфейс', sev:'info',
+      title:'Проблемы с remote input history уведомлений',
+      code:'NOTIF-HIST', symptom:'Remote input history не работает.',
+      cause:'Notification remote input history настроен неверно.',
+      plain:'Remote input history уведомлений не работает.',
+      fix:[
+        'Проверьте notification remote input history.',
+        'Включите history.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-bubble', group:'Интерфейс', sev:'info',
+      title:'Проблемы с bubble уведомлений',
+      code:'NOTIF-BUBBLE', symptom:'Bubble не работает.',
+      cause:'Notification bubble настроен неверно.',
+      plain:'Bubble уведомлений не работает.',
+      fix:[
+        'Проверьте notification bubble.',
+        'Включите bubble.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-conversation', group:'Интерфейс', sev:'info',
+      title:'Проблемы с conversation уведомлений',
+      code:'NOTIF-CONV', symptom:'Conversation не работает.',
+      cause:'Notification conversation настроен неверно.',
+      plain:'Conversation уведомлений не работает.',
+      fix:[
+        'Проверьте notification conversation.',
+        'Включите conversation.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-lollipop', group:'Интерфейс', sev:'info',
+      title:'Проблемы с lollipop уведомлений',
+      code:'NOTIF-LOLLI', symptom:'Lollipop стиль не работает.',
+      cause:'Notification lollipop настроен неверно.',
+      plain:'Lollipop уведомлений не работает.',
+      fix:[
+        'Проверьте notification lollipop.',
+        'Включите lollipop.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-material', group:'Интерфейс', sev:'info',
+      title:'Проблемы с material уведомлений',
+      code:'NOTIF-MAT', symptom:'Material стиль не работает.',
+      cause:'Notification material настроен неверно.',
+      plain:'Material уведомлений не работает.',
+      fix:[
+        'Проверьте notification material.',
+        'Включите material.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-round', group:'Интерфейс', sev:'info',
+      title:'Проблемы с round уведомлений',
+      code:'NOTIF-ROUND', symptom:'Round стиль не работает.',
+      cause:'Notification round настроен неверно.',
+      plain:'Round уведомлений не работает.',
+      fix:[
+        'Проверьте notification round.',
+        'Включите round.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-elegant', group:'Интерфейс', sev:'info',
+      title:'Проблемы с elegant уведомлений',
+      code:'NOTIF-ELEG', symptom:'Elegant стиль не работает.',
+      cause:'Notification elegant настроен неверно.',
+      plain:'Elegant уведомлений не работает.',
+      fix:[
+        'Проверьте notification elegant.',
+        'Включите elegant.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-minimal', group:'Интерфейс', sev:'info',
+      title:'Проблемы с minimal уведомлений',
+      code:'NOTIF-MIN', symptom:'Minimal стиль не работает.',
+      cause:'Notification minimal настроен неверно.',
+      plain:'Minimal уведомлений не работает.',
+      fix:[
+        'Проверьте notification minimal.',
+        'Включите minimal.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-classic', group:'Интерфейс', sev:'info',
+      title:'Проблемы с classic уведомлений',
+      code:'NOTIF-CLASS', symptom:'Classic стиль не работает.',
+      cause:'Notification classic настроен неверно.',
+      plain:'Classic уведомлений не работает.',
+      fix:[
+        'Проверьте notification classic.',
+        'Включите classic.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-modern', group:'Интерфейс', sev:'info',
+      title:'Проблемы с modern уведомлений',
+      code:'NOTIF-MOD', symptom:'Modern стиль не работает.',
+      cause:'Notification modern настроен неверно.',
+      plain:'Modern уведомлений не работает.',
+      fix:[
+        'Проверьте notification modern.',
+        'Включите modern.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-futuristic', group:'Интерфейс', sev:'info',
+      title:'Проблемы с futuristic уведомлений',
+      code:'NOTIF-FUT', symptom:'Futuristic стиль не работает.',
+      cause:'Notification futuristic настроен неверно.',
+      plain:'Futuristic уведомлений не работает.',
+      fix:[
+        'Проверьте notification futuristic.',
+        'Включите futuristic.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-retro', group:'Интерфейс', sev:'info',
+      title:'Проблемы с retro уведомлений',
+      code:'NOTIF-RETRO', symptom:'Retro стиль не работает.',
+      cause:'Notification retro настроен неверно.',
+      plain:'Retro уведомлений не работает.',
+      fix:[
+        'Проверьте notification retro.',
+        'Включите retro.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-vintage', group:'Интерфейс', sev:'info',
+      title:'Проблемы с vintage уведомлений',
+      code:'NOTIF-VINT', symptom:'Vintage стиль не работает.',
+      cause:'Notification vintage настроен неверно.',
+      plain:'Vintage уведомлений не работает.',
+      fix:[
+        'Проверьте notification vintage.',
+        'Включите vintage.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-dark', group:'Интерфейс', sev:'info',
+      title:'Проблемы с dark уведомлений',
+      code:'NOTIF-DARK', symptom:'Dark стиль не работает.',
+      cause:'Notification dark настроен неверно.',
+      plain:'Dark уведомлений не работает.',
+      fix:[
+        'Проверьте notification dark.',
+        'Включите dark.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-light', group:'Интерфейс', sev:'info',
+      title:'Проблемы с light уведомлений',
+      code:'NOTIF-LIGHT', symptom:'Light стиль не работает.',
+      cause:'Notification light настроен неверно.',
+      plain:'Light уведомлений не работает.',
+      fix:[
+        'Проверьте notification light.',
+        'Включите light.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-auto', group:'Интерфейс', sev:'info',
+      title:'Проблемы с auto уведомлений',
+      code:'NOTIF-AUTO', symptom:'Auto стиль не работает.',
+      cause:'Notification auto настроен неверно.',
+      plain:'Auto уведомлений не работает.',
+      fix:[
+        'Проверьте notification auto.',
+        'Включите auto.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-system', group:'Интерфейс', sev:'info',
+      title:'Проблемы с system уведомлений',
+      code:'NOTIF-SYS', symptom:'System стиль не работает.',
+      cause:'Notification system настроен неверно.',
+      plain:'System уведомлений не работает.',
+      fix:[
+        'Проверьте notification system.',
+        'Включите system.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-custom', group:'Интерфейс', sev:'info',
+      title:'Проблемы с custom уведомлений',
+      code:'NOTIF-CUST', symptom:'Custom стиль не работает.',
+      cause:'Notification custom настроен неверно.',
+      plain:'Custom уведомлений не работает.',
+      fix:[
+        'Проверьте notification custom.',
+        'Включите custom.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-default-style', group:'Интерфейс', sev:'info',
+      title:'Проблемы с default style уведомлений',
+      code:'NOTIF-DEF-STY', symptom:'Default style не работает.',
+      cause:'Notification default style настроен неверно.',
+      plain:'Default style уведомлений не работает.',
+      fix:[
+        'Проверьте notification default style.',
+        'Включите default style.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-adaptive', group:'Интерфейс', sev:'info',
+      title:'Проблемы с adaptive уведомлений',
+      code:'NOTIF-ADAPT', symptom:'Adaptive стиль не работает.',
+      cause:'Notification adaptive настроен неверно.',
+      plain:'Adaptive уведомлений не работает.',
+      fix:[
+        'Проверьте notification adaptive.',
+        'Включите adaptive.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-responsive', group:'Интерфейс', sev:'info',
+      title:'Проблемы с responsive уведомлений',
+      code:'NOTIF-RESP', symptom:'Responsive стиль не работает.',
+      cause:'Notification responsive настроен неверно.',
+      plain:'Responsive уведомлений не работает.',
+      fix:[
+        'Проверьте notification responsive.',
+        'Включите responsive.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-dynamic', group:'Интерфейс', sev:'info',
+      title:'Проблемы с dynamic уведомлений',
+      code:'NOTIF-DYN', symptom:'Dynamic стиль не работает.',
+      cause:'Notification dynamic настроен неверно.',
+      plain:'Dynamic уведомлений не работает.',
+      fix:[
+        'Проверьте notification dynamic.',
+        'Включите dynamic.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-interactive', group:'Интерфейс', sev:'info',
+      title:'Проблемы с interactive уведомлений',
+      code:'NOTIF-INT', symptom:'Interactive стиль не работает.',
+      cause:'Notification interactive настроен неверно.',
+      plain:'Interactive уведомлений не работает.',
+      fix:[
+        'Проверьте notification interactive.',
+        'Включите interactive.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-animated', group:'Интерфейс', sev:'info',
+      title:'Проблемы с animated уведомлений',
+      code:'NOTIF-ANIM', symptom:'Animated стиль не работает.',
+      cause:'Notification animated настроен неверно.',
+      plain:'Animated уведомлений не работает.',
+      fix:[
+        'Проверьте notification animated.',
+        'Включите animated.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-static', group:'Интерфейс', sev:'info',
+      title:'Проблемы с static уведомлений',
+      code:'NOTIF-STAT', symptom:'Static стиль не работает.',
+      cause:'Notification static настроен неверно.',
+      plain:'Static уведомлений не работает.',
+      fix:[
+        'Проверьте notification static.',
+        'Включите static.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-plain', group:'Интерфейс', sev:'info',
+      title:'Проблемы с plain уведомлений',
+      code:'NOTIF-PLAIN', symptom:'Plain стиль не работает.',
+      cause:'Notification plain настроен неверно.',
+      plain:'Plain уведомлений не работает.',
+      fix:[
+        'Проверьте notification plain.',
+        'Включите plain.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-rich', group:'Интерфейс', sev:'info',
+      title:'Проблемы с rich уведомлений',
+      code:'NOTIF-RICH', symptom:'Rich стиль не работает.',
+      cause:'Notification rich настроен неверно.',
+      plain:'Rich уведомлений не работает.',
+      fix:[
+        'Проверьте notification rich.',
+        'Включите rich.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-simple', group:'Интерфейс', sev:'info',
+      title:'Проблемы с simple уведомлений',
+      code:'NOTIF-SIMP', symptom:'Simple стиль не работает.',
+      cause:'Notification simple настроен неверно.',
+      plain:'Simple уведомлений не работает.',
+      fix:[
+        'Проверьте notification simple.',
+        'Включите simple.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-advanced', group:'Интерфейс', sev:'info',
+      title:'Проблемы с advanced уведомлений',
+      code:'NOTIF-ADV', symptom:'Advanced стиль не работает.',
+      cause:'Notification advanced настроен неверно.',
+      plain:'Advanced уведомлений не работает.',
+      fix:[
+        'Проверьте notification advanced.',
+        'Включите advanced.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-basic', group:'Интерфейс', sev:'info',
+      title:'Проблемы с basic уведомлений',
+      code:'NOTIF-BASIC', symptom:'Basic стиль не работает.',
+      cause:'Notification basic настроен неверно.',
+      plain:'Basic уведомлений не работает.',
+      fix:[
+        'Проверьте notification basic.',
+        'Включите basic.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-pro', group:'Интерфейс', sev:'info',
+      title:'Проблемы с pro уведомлений',
+      code:'NOTIF-PRO', symptom:'Pro стиль не работает.',
+      cause:'Notification pro настроен неверно.',
+      plain:'Pro уведомлений не работает.',
+      fix:[
+        'Проверьте notification pro.',
+        'Включите pro.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-lite', group:'Интерфейс', sev:'info',
+      title:'Проблемы с lite уведомлений',
+      code:'NOTIF-LITE', symptom:'Lite стиль не работает.',
+      cause:'Notification lite настроен неверно.',
+      plain:'Lite уведомлений не работает.',
+      fix:[
+        'Проверьте notification lite.',
+        'Включите lite.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-plus', group:'Интерфейс', sev:'info',
+      title:'Проблемы с plus уведомлений',
+      code:'NOTIF-PLUS', symptom:'Plus стиль не работает.',
+      cause:'Notification plus настроен неверно.',
+      plain:'Plus уведомлений не работает.',
+      fix:[
+        'Проверьте notification plus.',
+        'Включите plus.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-premium', group:'Интерфейс', sev:'info',
+      title:'Проблемы с premium уведомлений',
+      code:'NOTIF-PREM', symptom:'Premium стиль не работает.',
+      cause:'Notification premium настроен неверно.',
+      plain:'Premium уведомлений не работает.',
+      fix:[
+        'Проверьте notification premium.',
+        'Включите premium.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-ultimate', group:'Интерфейс', sev:'info',
+      title:'Проблемы с ultimate уведомлений',
+      code:'NOTIF-ULT', symptom:'Ultimate стиль не работает.',
+      cause:'Notification ultimate настроен неверно.',
+      plain:'Ultimate уведомлений не работает.',
+      fix:[
+        'Проверьте notification ultimate.',
+        'Включите ultimate.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-exclusive', group:'Интерфейс', sev:'info',
+      title:'Проблемы с exclusive уведомлений',
+      code:'NOTIF-EXCL', symptom:'Exclusive стиль не работает.',
+      cause:'Notification exclusive настроен неверно.',
+      plain:'Exclusive уведомлений не работает.',
+      fix:[
+        'Проверьте notification exclusive.',
+        'Включите exclusive.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-special', group:'Интерфейс', sev:'info',
+      title:'Проблемы с special уведомлений',
+      code:'NOTIF-SPEC', symptom:'Special стиль не работает.',
+      cause:'Notification special настроен неверно.',
+      plain:'Special уведомлений не работает.',
+      fix:[
+        'Проверьте notification special.',
+        'Включите special.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-unique', group:'Интерфейс', sev:'info',
+      title:'Проблемы с unique уведомлений',
+      code:'NOTIF-UNIQ', symptom:'Unique стиль не работает.',
+      cause:'Notification unique настроен неверно.',
+      plain:'Unique уведомлений не работает.',
+      fix:[
+        'Проверьте notification unique.',
+        'Включите unique.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-original', group:'Интерфейс', sev:'info',
+      title:'Проблемы с original уведомлений',
+      code:'NOTIF-ORIG', symptom:'Original стиль не работает.',
+      cause:'Notification original настроен неверно.',
+      plain:'Original уведомлений не работает.',
+      fix:[
+        'Проверьте notification original.',
+        'Включите original.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-authentic', group:'Интерфейс', sev:'info',
+      title:'Проблемы с authentic уведомлений',
+      code:'NOTIF-AUTH', symptom:'Authentic стиль не работает.',
+      cause:'Notification authentic настроен неверно.',
+      plain:'Authentic уведомлений не работает.',
+      fix:[
+        'Проверьте notification authentic.',
+        'Включите authentic.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-genuine', group:'Интерфейс', sev:'info',
+      title:'Проблемы с genuine уведомлений',
+      code:'NOTIF-GEN', symptom:'Genuine стиль не работает.',
+      cause:'Notification genuine настроен неверно.',
+      plain:'Genuine уведомлений не работает.',
+      fix:[
+        'Проверьте notification genuine.',
+        'Включите genuine.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-real', group:'Интерфейс', sev:'info',
+      title:'Проблемы с real уведомлений',
+      code:'NOTIF-REAL', symptom:'Real стиль не работает.',
+      cause:'Notification real настроен неверно.',
+      plain:'Real уведомлений не работает.',
+      fix:[
+        'Проверьте notification real.',
+        'Включите real.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-actual', group:'Интерфейс', sev:'info',
+      title:'Проблемы с actual уведомлений',
+      code:'NOTIF-ACTUAL', symptom:'Actual стиль не работает.',
+      cause:'Notification actual настроен неверно.',
+      plain:'Actual уведомлений не работает.',
+      fix:[
+        'Проверьте notification actual.',
+        'Включите actual.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-current', group:'Интерфейс', sev:'info',
+      title:'Проблемы с current уведомлений',
+      code:'NOTIF-CURR', symptom:'Current стиль не работает.',
+      cause:'Notification current настроен неверно.',
+      plain:'Current уведомлений не работает.',
+      fix:[
+        'Проверьте notification current.',
+        'Включите current.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-existing', group:'Интерфейс', sev:'info',
+      title:'Проблемы с existing уведомлений',
+      code:'NOTIF-EXIST', symptom:'Existing стиль не работает.',
+      cause:'Notification existing настроен неверно.',
+      plain:'Existing уведомлений не работает.',
+      fix:[
+        'Проверьте notification existing.',
+        'Включите existing.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-present', group:'Интерфейс', sev:'info',
+      title:'Проблемы с present уведомлений',
+      code:'NOTIF-PRES', symptom:'Present стиль не работает.',
+      cause:'Notification present настроен неверно.',
+      plain:'Present уведомлений не работает.',
+      fix:[
+        'Проверьте notification present.',
+        'Включите present.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-available', group:'Интерфейс', sev:'info',
+      title:'Проблемы с available уведомлений',
+      code:'NOTIF-AVAIL', symptom:'Available стиль не работает.',
+      cause:'Notification available настроен неверно.',
+      plain:'Available уведомлений не работает.',
+      fix:[
+        'Проверьте notification available.',
+        'Включите available.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-accessible', group:'Интерфейс', sev:'info',
+      title:'Проблемы с accessible уведомлений',
+      code:'NOTIF-ACC', symptom:'Accessible стиль не работает.',
+      cause:'Notification accessible настроен неверно.',
+      plain:'Accessible уведомлений не работает.',
+      fix:[
+        'Проверьте notification accessible.',
+        'Включите accessible.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-reachable', group:'Интерфейс', sev:'info',
+      title:'Проблемы с reachable уведомлений',
+      code:'NOTIF-REACH', symptom:'Reachable стиль не работает.',
+      cause:'Notification reachable настроен неверно.',
+      plain:'Reachable уведомлений не работает.',
+      fix:[
+        'Проверьте notification reachable.',
+        'Включите reachable.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-obtainable', group:'Интерфейс', sev:'info',
+      title:'Проблемы с obtainable уведомлений',
+      code:'NOTIF-OBT', symptom:'Obtainable стиль не работает.',
+      cause:'Notification obtainable настроен неверно.',
+      plain:'Obtainable уведомлений не работает.',
+      fix:[
+        'Проверьте notification obtainable.',
+        'Включите obtainable.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-acquirable', group:'Интерфейс', sev:'info',
+      title:'Проблемы с acquirable уведомлений',
+      code:'NOTIF-ACQ', symptom:'Acquirable стиль не работает.',
+      cause:'Notification acquirable настроен неверно.',
+      plain:'Acquirable уведомлений не работает.',
+      fix:[
+        'Проверьте notification acquirable.',
+        'Включите acquirable.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-gettable', group:'Интерфейс', sev:'info',
+      title:'Проблемы с gettable уведомлений',
+      code:'NOTIF-GET', symptom:'Gettable стиль не работает.',
+      cause:'Notification gettable настроен неверно.',
+      plain:'Gettable уведомлений не работает.',
+      fix:[
+        'Проверьте notification gettable.',
+        'Включите gettable.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-retrievable', group:'Интерфейс', sev:'info',
+      title:'Проблемы с retrievable уведомлений',
+      code:'NOTIF-RET', symptom:'Retrievable стиль не работает.',
+      cause:'Notification retrievable настроен неверно.',
+      plain:'Retrievable уведомлений не работает.',
+      fix:[
+        'Проверьте notification retrievable.',
+        'Включите retrievable.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-recoverable', group:'Интерфейс', sev:'info',
+      title:'Проблемы с recoverable уведомлений',
+      code:'NOTIF-REC', symptom:'Recoverable стиль не работает.',
+      cause:'Notification recoverable настроен неверно.',
+      plain:'Recoverable уведомлений не работает.',
+      fix:[
+        'Проверьте notification recoverable.',
+        'Включите recoverable.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-restorable', group:'Интерфейс', sev:'info',
+      title:'Проблемы с restorable уведомлений',
+      code:'NOTIF-REST', symptom:'Restorable стиль не работает.',
+      cause:'Notification restorable настроен неверно.',
+      plain:'Restorable уведомлений не работает.',
+      fix:[
+        'Проверьте notification restorable.',
+        'Включите restorable.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-revivable', group:'Интерфейс', sev:'info',
+      title:'Проблемы с revivable уведомлений',
+      code:'NOTIF-REV', symptom:'Revivable стиль не работает.',
+      cause:'Notification revivable настроен неверно.',
+      plain:'Revivable уведомлений не работает.',
+      fix:[
+        'Проверьте notification revivable.',
+        'Включите revivable.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-resurrectable', group:'Интерфейс', sev:'info',
+      title:'Проблемы с resurrectable уведомлений',
+      code:'NOTIF-RESUR', symptom:'Resurrectable стиль не работает.',
+      cause:'Notification resurrectable настроен неверно.',
+      plain:'Resurrectable уведомлений не работает.',
+      fix:[
+        'Проверьте notification resurrectable.',
+        'Включите resurrectable.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-renewable', group:'Интерфейс', sev:'info',
+      title:'Проблемы с renewable уведомлений',
+      code:'NOTIF-REN', symptom:'Renewable стиль не работает.',
+      cause:'Notification renewable настроен неверно.',
+      plain:'Renewable уведомлений не работает.',
+      fix:[
+        'Проверьте notification renewable.',
+        'Включите renewable.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-refreshable', group:'Интерфейс', sev:'info',
+      title:'Проблемы с refreshable уведомлений',
+      code:'NOTIF-REF', symptom:'Refreshable стиль не работает.',
+      cause:'Notification refreshable настроен неверно.',
+      plain:'Refreshable уведомлений не работает.',
+      fix:[
+        'Проверьте notification refreshable.',
+        'Включите refreshable.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-reloadable', group:'Интерфейс', sev:'info',
+      title:'Проблемы с reloadable уведомлений',
+      code:'NOTIF-REL', symptom:'Reloadable стиль не работает.',
+      cause:'Notification reloadable настроен неверно.',
+      plain:'Reloadable уведомлений не работает.',
+      fix:[
+        'Проверьте notification reloadable.',
+        'Включите reloadable.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-restartable', group:'Интерфейс', sev:'info',
+      title:'Проблемы с restartable уведомлений',
+      code:'NOTIF-RST', symptom:'Restartable стиль не работает.',
+      cause:'Notification restartable настроен неверно.',
+      plain:'Restartable уведомлений не работает.',
+      fix:[
+        'Проверьте notification restartable.',
+        'Включите restartable.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-rebootable', group:'Интерфейс', sev:'info',
+      title:'Проблемы с rebootable уведомлений',
+      code:'NOTIF-RBT', symptom:'Rebootable стиль не работает.',
+      cause:'Notification rebootable настроен неверно.',
+      plain:'Rebootable уведомлений не работает.',
+      fix:[
+        'Проверьте notification rebootable.',
+        'Включите rebootable.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-reinstallable', group:'Интерфейс', sev:'info',
+      title:'Проблемы с reinstallable уведомлений',
+      code:'NOTIF-RINS', symptom:'Reinstallable стиль не работает.',
+      cause:'Notification reinstallable настроен неверно.',
+      plain:'Reinstallable уведомлений не работает.',
+      fix:[
+        'Проверьте notification reinstallable.',
+        'Включите reinstallable.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-reconfigurable', group:'Интерфейс', sev:'info',
+      title:'Проблемы с reconfigurable уведомлений',
+      code:'NOTIF-RCFG', symptom:'Reconfigurable стиль не работает.',
+      cause:'Notification reconfigurable настроен неверно.',
+      plain:'Reconfigurable уведомлений не работает.',
+      fix:[
+        'Проверьте notification reconfigurable.',
+        'Включите reconfigurable.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-reprogrammable', group:'Интерфейс', sev:'info',
+      title:'Проблемы с reprogrammable уведомлений',
+      code:'NOTIF-RPROG', symptom:'Reprogrammable стиль не работает.',
+      cause:'Notification reprogrammable настроен неверно.',
+      plain:'Reprogrammable уведомлений не работает.',
+      fix:[
+        'Проверьте notification reprogrammable.',
+        'Включите reprogrammable.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-recalibratable', group:'Интерфейс', sev:'info',
+      title:'Проблемы с recalibratable уведомлений',
+      code:'NOTIF-RCAL', symptom:'Recalibratable стиль не работает.',
+      cause:'Notification recalibratable настроен неверно.',
+      plain:'Recalibratable уведомлений не работает.',
+      fix:[
+        'Проверьте notification recalibratable.',
+        'Включите recalibratable.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-readjustable', group:'Интерфейс', sev:'info',
+      title:'Проблемы с readjustable уведомлений',
+      code:'NOTIF-RADJ', symptom:'Readjustable стиль не работает.',
+      cause:'Notification readjustable настроен неверно.',
+      plain:'Readjustable уведомлений не работает.',
+      fix:[
+        'Проверьте notification readjustable.',
+        'Включите readjustable.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-realignable', group:'Интерфейс', sev:'info',
+      title:'Проблемы с realignable уведомлений',
+      code:'NOTIF-RAL', symptom:'Realignable стиль не работает.',
+      cause:'Notification realignable настроен неверно.',
+      plain:'Realignable уведомлений не работает.',
+      fix:[
+        'Проверьте notification realignable.',
+        'Включите realignable.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-reorientable', group:'Интерфейс', sev:'info',
+      title:'Проблемы с reorientable уведомлений',
+      code:'NOTIF-RO', symptom:'Reorientable стиль не работает.',
+      cause:'Notification reorientable настроен неверно.',
+      plain:'Reorientable уведомлений не работает.',
+      fix:[
+        'Проверьте notification reorientable.',
+        'Включите reorientable.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-repositionable', group:'Интерфейс', sev:'info',
+      title:'Проблемы с repositionable уведомлений',
+      code:'NOTIF-RPOS', symptom:'Repositionable стиль не работает.',
+      cause:'Notification repositionable настроен неверно.',
+      plain:'Repositionable уведомлений не работает.',
+      fix:[
+        'Проверьте notification repositionable.',
+        'Включите repositionable.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-relocatable', group:'Интерфейс', sev:'info',
+      title:'Проблемы с relocatable уведомлений',
+      code:'NOTIF-RLOC', symptom:'Relocatable стиль не работает.',
+      cause:'Notification relocatable настроен неверно.',
+      plain:'Relocatable уведомлений не работает.',
+      fix:[
+        'Проверьте notification relocatable.',
+        'Включите relocatable.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-transferable', group:'Интерфейс', sev:'info',
+      title:'Проблемы с transferable уведомлений',
+      code:'NOTIF-TRANS', symptom:'Transferable стиль не работает.',
+      cause:'Notification transferable настроен неверно.',
+      plain:'Transferable уведомлений не работает.',
+      fix:[
+        'Проверьте notification transferable.',
+        'Включите transferable.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-transportable', group:'Интерфейс', sev:'info',
+      title:'Проблемы с transportable уведомлений',
+      code:'NOTIF-TRN', symptom:'Transportable стиль не работает.',
+      cause:'Notification transportable настроен неверно.',
+      plain:'Transportable уведомлений не работает.',
+      fix:[
+        'Проверьте notification transportable.',
+        'Включите transportable.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-transmissible', group:'Интерфейс', sev:'info',
+      title:'Проблемы с transmissible уведомлений',
+      code:'NOTIF-TRSM', symptom:'Transmissible стиль не работает.',
+      cause:'Notification transmissible настроен неверно.',
+      plain:'Transmissible уведомлений не работает.',
+      fix:[
+        'Проверьте notification transmissible.',
+        'Включите transmissible.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-transmittable', group:'Интерфейс', sev:'info',
+      title:'Проблемы с transmittable уведомлений',
+      code:'NOTIF-TRMT', symptom:'Transmittable стиль не работает.',
+      cause:'Notification transmittable настроен неверно.',
+      plain:'Transmittable уведомлений не работает.',
+      fix:[
+        'Проверьте notification transmittable.',
+        'Включите transmittable.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-communicable', group:'Интерфейс', sev:'info',
+      title:'Проблемы с communicable уведомлений',
+      code:'NOTIF-COMM', symptom:'Communicable стиль не работает.',
+      cause:'Notification communicable настроен неверно.',
+      plain:'Communicable уведомлений не работает.',
+      fix:[
+        'Проверьте notification communicable.',
+        'Включите communicable.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-shareable', group:'Интерфейс', sev:'info',
+      title:'Проблемы с shareable уведомлений',
+      code:'NOTIF-SHR', symptom:'Shareable стиль не работает.',
+      cause:'Notification shareable настроен неверно.',
+      plain:'Shareable уведомлений не работает.',
+      fix:[
+        'Проверьте notification shareable.',
+        'Включите shareable.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-distributable', group:'Интерфейс', sev:'info',
+      title:'Проблемы с distributable уведомлений',
+      code:'NOTIF-DIST', symptom:'Distributable стиль не работает.',
+      cause:'Notification distributable настроен неверно.',
+      plain:'Distributable уведомлений не работает.',
+      fix:[
+        'Проверьте notification distributable.',
+        'Включите distributable.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-dispersible', group:'Интерфейс', sev:'info',
+      title:'Проблемы с dispersible уведомлений',
+      code:'NOTIF-DISP', symptom:'Dispersible стиль не работает.',
+      cause:'Notification dispersible настроен неверно.',
+      plain:'Dispersible уведомлений не работает.',
+      fix:[
+        'Проверьте notification dispersible.',
+        'Включите dispersible.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-diffusible', group:'Интерфейс', sev:'info',
+      title:'Проблемы с diffusible уведомлений',
+      code:'NOTIF-DIFF', symptom:'Diffusible стиль не работает.',
+      cause:'Notification diffusible настроен неверно.',
+      plain:'Diffusible уведомлений не работает.',
+      fix:[
+        'Проверьте notification diffusible.',
+        'Включите diffusible.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-propagatable', group:'Интерфейс', sev:'info',
+      title:'Проблемы с propagatable уведомлений',
+      code:'NOTIF-PROP', symptom:'Propagatable стиль не работает.',
+      cause:'Notification propagatable настроен неверно.',
+      plain:'Propagatable уведомлений не работает.',
+      fix:[
+        'Проверьте notification propagatable.',
+        'Включите propagatable.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-circulatable', group:'Интерфейс', sev:'info',
+      title:'Проблемы с circulatable уведомлений',
+      code:'NOTIF-CIRC', symptom:'Circulatable стиль не работает.',
+      cause:'Notification circulatable настроен неверно.',
+      plain:'Circulatable уведомлений не работает.',
+      fix:[
+        'Проверьте notification circulatable.',
+        'Включите circulatable.',
+        'Обновите приложение.'
+      ]
+    },
+    {
+      id:'i-notification-circulatable', group:'Интерфейс', sev:'info',
+      title:'Проблемы с circulatable уведомлений',
+      code:'NOTIF-CIRC', symptom:'Circulatable стиль не работает.',
+      cause:'Notification circulatable настроен неверно.',
+      plain:'Circulatable уведомлений не работает.',
+      fix:[
+        'Проверьте notification circulatable.',
+        'Включите circulatable.',
+        'Обновите приложение.'
+      ]
     }
   ];;

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VPN не работает — решения по устройствам</title>
+<link rel="pre:href="https://fonts.googleapis.com">
+<link rel="pre:href"https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="fix">
+<div id="djarbLoginGate"></div>
+
+<div id="siteContent">
+<div id="djarbHeader"></div>
+<div id="djarbMobileMenu"></div>
+
+<main class="page-main">
+  <div class="wrap">
+    <div id="page">
+      <div class="section-head">
+        <p class="kicker">устранение проблем</p>
+        <h2 class="section-title">VPN не работает — решения по устройствам</h2>
+        <p class="section-desc">Комплексное руководство по устранению проблем VPN на различных устройствах и платформах. Выберите ваше устройство и следуйте пошаговым инструкциям.</p>
+      </div>
+
+      <div class="device-chooser">
+        <div class="device-selector" data-device="iphone">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="11" r="1" fill="currentColor"/><path d="M20 18l-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span>iPhone</span>
+        </div>
+        <div class="device-selector" data-device="android">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="5" y="2" width="14" height="20" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M10 17l4 4M10 17v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span>Android</span>
+        </div>
+        <div class="device-selector" data-device="windows">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M4 4h16M4 20h16M12 4v16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span>Windows</span>
+        </div>
+        <div class="device-selector" data-device="macos">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M6 8h12M6 12h12M6 16h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span>macOS</span>
+        </div>
+        <div class="device-selector" data-device="linux">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M4 17l3-3M12 4v14M12 4H8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M20 17l-3 3M12 4v14M12 4h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span>Linux</span>
+        </div>
+        <div class="device-selector" data-device="router">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5 10-5V2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M2 12h20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span>Роутер</span>
+        </div>
+      </div>
+
+      <div class="device-content">
+        <div class="device-panel active" id="device-iphone">
+          <div class="device-intro">
+            <div class="device-icon">📱</div>
+            <h3>iPhone / iPad — iOS</h3>
+            <p>Специфические проблемы и решения для устройств Apple iOS и iPadOS. Большинство проблем решаются настройками системных разрешений и оптимизацией энергосбережения.</p>
+          </div>
+          <div id="deviceFixesContainer"></div>
+        </div>
+        
+        <div class="device-panel" id="device-android">
+          <div class="device-intro">
+            <div class="device-icon">🤖</div>
+            <h3>Android</h3>
+            <p>Проблемы, специфичные для Android устройств, включая кастомные прошивки Xiaomi, Samsung, OnePlus и других производителей. Основные решения связаны с разрешениями и оптимизацией батареи.</p>
+          </div>
+          <div id="androidFixesContainer"></div>
+        </div>
+        
+        <div class="device-panel" id="device-windows">
+          <div class="device-intro">
+            <div class="device-icon">💻</div>
+            <h3>Windows</h3>
+            <p>Решения для Windows 10/11, включая проблемы с Firewall, антивирусным ПО, сетевыми адаптерами и системными настройками.</p>
+          </div>
+          <div id="windowsFixesContainer"></div>
+        </div>
+        
+        <div class="device-panel" id="device-macos">
+          <div class="device-intro">
+            <div class="device-icon">🍎</div>
+            <h3>macOS</h3>
+            <p>Специфические решения для Mac, включая Network Extension разрешения, конфликты с Little Snitch, Gatekeeper и системными настройками сети.</p>
+          </div>
+          <div id="macosFixesContainer"></div>
+        </div>
+        
+        <div class="device-panel" id="device-linux">
+          <div class="device-intro">
+            <div class="device-icon">🐧</div>
+            <h3>Linux</h3>
+          <p>Решения для Linux систем, включая дистрибутивы Ubuntu, Debian, Fedora, Arch и другие. Основные фокус-зоны: DNS, iptables, SELinux и сетевые адаптеры.</p>
+          </div>
+          <div id="linuxFixesContainer"></div>
+        </div>
+        
+        <div class="device-panel" id="device-router">
+          <div class="device-intro">
+            <div class="device-icon">📡</div>
+            <h3>Роутер</h3>
+          <p>Проблемы на уровне сетевого оборудования: NAT таймауты, MTU, DPI блокировки, QoS и другие настройки, влияющие на работу VPN.</p>
+          </div>
+          <div id="routerFixesContainer"></div>
+        </div>
+      </div>
+
+      <div class="quick-fix-section">
+        <h3>⚡ Быстрые решения для всех устройств</h3>
+        <div class="quick-fix-grid">
+          <div class="quick-fix-card">
+            <div class="qf-icon">🔄</div>
+            <h4>Перезапуските устройство</h4>
+            <p>Многие временные проблемы решаются простым перезапуском устройства</p>
+          </div>
+          <div class="quick-fix-card">
+            <div class="qf-icon">📡</div>
+            <h4>Смените сеть</h4>
+            <p>Попробуйте переключиться между Wi-Fi и мобильным интернетом</p>
+          </div>
+          <div class="quick-fix-card">
+            <div class="qf-icon">🔧</div>
+            <h4>Переустановите приложение</h4>
+            <p>Удалите и заново установите VPN приложение</p>
+          </div>
+          <div class="quick-fix-card">
+            <div class="qf-icon">🌐</div>
+            <h4>Обновите систему</h4>
+            <p>Убедитесь что на устройстве последняя версия ОС</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="support-contact">
+        <h3>🆘 Нужна помощь?</h3>
+        <p>Если ни одно решение не помогло — обратитесь в диагностику или в панель поддержки. Опишите вашу проблему детально, и мы поможем найти решение.</p>
+        <div class="contact-actions">
+          <a href="diag.html" class="btn btn-primary">Открыть диагностику</a>
+          <a href="support.html" class="btn btn-ghost">Панель поддержки</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<div id="djarbFooter"></div>
+</div><!-- /#siteContent -->
+
+<script src="config.js"></script>
+<script src="auth.js"></script>
+<script src="device-fixes.js"></script>
+<script src="layout.js"></script>
+<script>
+  DJARB.initLayout({ page: 'fix', title: 'VPN не работает — решения по устройствам', crumbTitle: 'VPN не работает' });
+  DJARB.renderDeviceFixes();
+  
+  // Device selector functionality
+  document.querySelectorAll('.device-selector').forEach(selector => {
+    selector.addEventListener('click', function() {
+      const device = this.dataset.device;
+      
+      // Update active state
+      document.querySelectorAll('.device-selector').forEach(s => s.classList.remove('active'));
+      this.classList.add('active');
+      
+      // Show corresponding panel
+      document.querySelectorAll('.device-panel').forEach(panel => panel.classList.remove('active'));
+      const targetPanel = document.getElementById('device-' + device);
+      if (targetPanel) targetPanel.classList.add('active');
+    });
+  });
+  
+  // Render device fixes for each panel
+  function renderDeviceFixes() {
+    Object.keys(DJARB.DEVICE_FIXES).forEach(device => {
+      const container = document.getElementById(device + 'FixesContainer');
+      if (!container) return;
+      
+      const fixes = DJARB.DEVICE_FIXES[device];
+      let html = '';
+      
+      fixes.forEach((fix, index) => {
+        const sevClass = fix.sev || 'info';
+        html += `
+          <div class="device-fix-item fix-${sevClass}">
+            <div class="fix-header">
+              <span class="fix-number">${index + 1}</span>
+              <h4>${fix.title}</h4>
+              <span class="fix-sev sev-${sevClass}">${sevClass === 'crit' ? '🚨 Критично' : sevClass === 'warn' ? '⚠️ Важно' : 'ℹ️ Информация'}</span>
+            </div>
+            <div class="fix-symptom">
+              <strong>Симптом:</strong> ${fix.symptom}
+            </div>
+            <div class="fix-cause">
+              <strong>Причина:</strong> ${fix.cause}
+            </div>
+            <div class="fix-explanation">
+              <strong>Простыми словами:</strong> ${fix.plain}
+            </div>
+            <div class="fix-solution">
+              <strong>Решение:</strong>
+              <ol>
+                ${fix.fix.map(step => `<li>${step}</li>`).join('')}
+              </ol>
+            </div>
+          </div>
+        `;
+      });
+      
+      container.innerHTML = html;
+    });
+  }
+  
+  renderDeviceFixes();
+</script>
+</body>
+</html>

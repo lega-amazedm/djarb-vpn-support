@@ -38,6 +38,11 @@
       <div class="subtab-panel" data-group="incy" data-subtab="errors">
         <div class="page-toolbar">
           <input type="text" class="filter-input" id="incyFilter" placeholder="Найти по симптому, коду или строке из лога…">
+          <div class="filter-group">
+            <button class="filter-chip crit" data-sev="crit">🚨 Критичные</button>
+            <button class="filter-chip warn" data-sev="warn">⚠️ Важные</button>
+            <button class="filter-chip info" data-sev="info">ℹ️ Информация</button>
+          </div>
           <span class="count-pill" id="incyCount"></span>
         </div>
         <div class="cat-groups" id="incyCatalog"></div>

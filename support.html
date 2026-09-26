@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Панель поддержки — DJARB VPN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="support">
+<div id="djarbLoginGate"></div>
+
+<div id="siteContent">
+<div id="djarbHeader"></div>
+<div id="djarbMobileMenu"></div>
+
+<main class="page-main">
+  <div class="wrap">
+    <div id="page">
+      <div class="section-head">
+        <p class="kicker">панель поддержки</p>
+        <h2 class="section-title">Рабочее место поддержки</h2>
+        <p class="section-desc">Быстрая диагностика, статистика обращений и часто встречающиеся проблемы для эффективной работы команды поддержки.</p>
+      </div>
+
+      <div class="support-dashboard">
+        <!-- Quick Stats -->
+        <div class="stats-grid">
+          <div class="stat-card stat-critical">
+            <div class="stat-icon">🚨</div>
+            <div class="stat-content">
+              <div class="stat-number" id="statCrit">–</div>
+              <div class="stat-label">Критических ошибок в базе</div>
+            </div>
+          </div>
+          <div class="stat-card stat-warning">
+            <div class="stat-icon">⚠️</div>
+            <div class="stat-content">
+              <div class="stat-number" id="statWarn">–</div>
+              <div class="stat-label">Важных ошибок в базе</div>
+            </div>
+          </div>
+          <div class="stat-card stat-info">
+            <div class="stat-icon">ℹ️</div>
+            <div class="stat-content">
+              <div class="stat-number" id="statInfo">–</div>
+              <div class="stat-label">Информационных в базе</div>
+            </div>
+          </div>
+          <div class="stat-card stat-active">
+            <div class="stat-icon">👥</div>
+            <div class="stat-content">
+              <div class="stat-number" id="statUsers">–</div>
+              <div class="stat-label">Пользователей с доступом</div>
+            </div>
+          </div>
+        </div>
+        <p class="stats-note">Цифры считаются напрямую из базы ошибок VLESS / Happ / Incy — обновляются сами, когда база пополняется.</p>
+
+        <!-- Full-catalog search: find any error, right here -->
+        <div class="support-section">
+          <h3>🔎 Найти любую ошибку</h3>
+          <p class="section-desc" style="margin-bottom:16px;">Поиск сразу по всей базе — VLESS, Happ и Incy вместе. Начните печатать симптом, код или строку из лога.</p>
+          <div class="page-toolbar">
+            <input type="text" class="filter-input" id="supportFilter" placeholder="Например: REALITY, не импортируется, connection reset…">
+            <div class="filter-group">
+              <button class="filter-chip crit" data-sev="crit">🚨 Критичные</button>
+              <button class="filter-chip warn" data-sev="warn">⚠️ Важные</button>
+              <button class="filter-chip info" data-sev="info">ℹ️ Информация</button>
+            </div>
+            <span class="count-pill" id="supportCount"></span>
+          </div>
+          <div class="cat-groups" id="supportCatalog"></div>
+        </div>
+
+        <!-- Quick Diagnostics -->
+        <div class="support-section">
+          <h3>⚡ Быстрая диагностика</h3>
+          <div class="diagnostic-tools">
+            <div class="diag-tool">
+              <div class="diag-tool-header">
+                <span class="diag-tool-icon">🔍</span>
+                <h4>Поиск по симптомам</h4>
+              </div>
+              <p>Найти ошибки по описанию проблемы пользователя</p>
+              <a href="diag.html" class="btn btn-ghost">Открыть →</a>
+            </div>
+            <div class="diag-tool">
+              <div class="diag-tool-header">
+                <span class="diag-tool-icon">📱</span>
+                <h4>Диагностика по приложению</h4>
+              </div>
+              <p>Ошибки конкретно для Happ или Incy</p>
+              <div class="diag-tool-actions">
+                <a href="happ.html" class="btn btn-ghost">Happ</a>
+                <a href="incy.html" class="btn btn-ghost">Incy</a>
+              </div>
+            </div>
+            <div class="diag-tool">
+              <div class="diag-tool-header">
+                <span class="diag-tool-icon">🌐</span>
+                <h4>Ошибки VLESS</h4>
+              </div>
+              <p>Протокол и Xray-ядра проблемы</p>
+              <a href="vless.html" class="btn btn-ghost">Открыть →</a>
+            </div>
+            <div class="diag-tool">
+              <div class="diag-tool-header">
+                <span class="diag-tool-icon">🆚</span>
+                <h4>Сравнение приложений</h4>
+              </div>
+              <p>Помочь пользователю выбрать приложение</p>
+              <a href="compare.html" class="btn btn-ghost">Открыть →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Common Issues -->
+        <div class="support-section">
+          <h3>🔥 Самые частые проблемы <span class="demo-badge">пример</span></h3>
+          <div class="common-issues">
+            <div class="issue-item issue-hot">
+              <div class="issue-badge">🔥 Горячая</div>
+              <h4>Подключение устанавливается, но сайты не открываются</h4>
+              <p>Возможно проблема с DNS или маршрутизацией</p>
+              <div class="issue-actions">
+                <span class="issue-count">45 обращений</span>
+                <a href="diag.html" class="issue-link">Решение →</a>
+              </div>
+            </div>
+            <div class="issue-item issue-medium">
+              <div class="issue-badge">⚠️ Частая</div>
+              <h4>REALITY processed invalid connection</h4>
+              <p>Несовпадение параметров REALITY между клиентом и сервером</p>
+              <div class="issue-actions">
+                <span class="issue-count">32 обращения</span>
+                <a href="vless.html" class="issue-link">Решение →</a>
+              </div>
+            </div>
+            <div class="issue-item issue-medium">
+              <div class="issue-badge">⚠️ Частая</div>
+              <h4>Приложение отключается при блокировке экрана</h4>
+              <p>Проблема с оптимизацией батареи</p>
+              <div class="issue-actions">
+                <span class="issue-count">28 обращений</span>
+                <a href="happ.html" class="issue-link">Решение →</a>
+              </div>
+            </div>
+            <div class="issue-item issue-normal">
+              <div class="issue-badge">ℹ️ Обычная</div>
+              <h4>Конфигурация не распознаётся при импорте</h4>
+              <p>Ссылка обрезана или содержит лишние символы</p>
+              <div class="issue-actions">
+                <span class="issue-count">21 обращение</span>
+                <a href="happ.html" class="issue-link">Решение →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- User Status -->
+        <div class="support-section">
+          <h3>👥 Статус пользователей <span class="demo-badge">пример</span></h3>
+          <p class="section-desc" style="margin-bottom:16px;">Карточки — по всем пользователям с доступом. Статус и время активности здесь для примера; кнопка ведёт на настоящую личную страницу входа.</p>
+          <div class="user-status-grid">
+            <div class="user-status-card">
+              <div class="user-avatar user-said">С</div>
+              <div class="user-info">
+                <h4>Саид</h4>
+                <p class="user-status">Активен</p>
+                <p class="user-last">Последняя активность: 5 мин назад</p>
+              </div>
+              <div class="user-actions">
+                <a href="said.html" class="btn btn-ghost btn-sm">Профиль →</a>
+              </div>
+            </div>
+            <div class="user-status-card">
+              <div class="user-avatar user-maga">М</div>
+              <div class="user-info">
+                <h4>Мага</h4>
+                <p class="user-status">Активен</p>
+                <p class="user-last">Последняя активность: 12 мин назад</p>
+              </div>
+              <div class="user-actions">
+                <a href="maga.html" class="btn btn-ghost btn-sm">Профиль →</a>
+              </div>
+            </div>
+            <div class="user-status-card">
+              <div class="user-avatar user-alberto">А</div>
+              <div class="user-info">
+                <h4>Альберто</h4>
+                <p class="user-status inactive">Неактивен</p>
+                <p class="user-last">Последняя активность: 2 часа назад</p>
+              </div>
+              <div class="user-actions">
+                <a href="alberto.html" class="btn btn-ghost btn-sm">Профиль →</a>
+              </div>
+            </div>
+            <div class="user-status-card">
+              <div class="user-avatar user-oksana">О</div>
+              <div class="user-info">
+                <h4>Оксана</h4>
+                <p class="user-status">Активен</p>
+                <p class="user-last">Последняя активность: 8 мин назад</p>
+              </div>
+              <div class="user-actions">
+                <a href="oksana.html" class="btn btn-ghost btn-sm">Профиль →</a>
+              </div>
+            </div>
+            <div class="user-status-card">
+              <div class="user-avatar user-dina">Д</div>
+              <div class="user-info">
+                <h4>Дина</h4>
+                <p class="user-status inactive">Неактивен</p>
+                <p class="user-last">Последняя активность: 1 день назад</p>
+              </div>
+              <div class="user-actions">
+                <a href="dina.html" class="btn btn-ghost btn-sm">Профиль →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="support-section">
+          <h3>🎯 Быстрые действия</h3>
+          <div class="quick-actions-grid">
+            <a href="diag.html" class="quick-action">
+              <span class="qa-icon">🔍</span>
+              <h4>Новая диагностика</h4>
+              <p>Начать поиск по симптомам</p>
+            </a>
+            <a href="servers.html" class="quick-action">
+              <span class="qa-icon">📡</span>
+              <h4>Проверить сервера</h4>
+              <p>Статус и доступность</p>
+            </a>
+            <a href="fix.html" class="quick-action">
+              <span class="qa-icon">🔧</span>
+              <h4>VPN не работает</h4>
+              <p>Решения по устройствам</p>
+            </a>
+            <a href="setup.html" class="quick-action">
+              <span class="qa-icon">📖</span>
+              <h4>Инструкция настройки</h4>
+              <p>Пошаговое руководство</p>
+            </a>
+          </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="support-section">
+          <h3>📊 Последняя активность <span class="demo-badge">пример</span></h3>
+          <p class="section-desc" style="margin-bottom:16px;">Лента для примера — покажет реальные события, когда будет подключён журнал действий пользователей.</p>
+          <div class="activity-feed">
+            <div class="activity-item">
+              <div class="activity-time">5 мин назад</div>
+              <div class="activity-content">
+                <span class="activity-user">Саид</span> нашёл решение для "REALITY processed invalid connection"
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-time">12 мин назад</div>
+              <div class="activity-content">
+                <span class="activity-user">Мага</span> импортировал новую подписку
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-time">25 мин назад</div>
+              <div class="activity-content">
+                <span class="activity-user">Оксана</span> успешно подключилась к серверу #3
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-time">1 час назад</div>
+              <div class="activity-content">
+                <span class="activity-user">Альберто</span> запросил помощь с настройкой Happ
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-time">2 часа назад</div>
+              <div class="activity-content">
+                <span class="activity-user">Дина</span> переключилась с Happ на Incy
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<div id="djarbFooter"></div>
+</div><!-- /#siteContent -->
+
+<script src="config.js"></script>
+<script src="auth.js"></script>
+<script src="catalog.js"></script>
+<script src="vless.js"></script>
+<script src="happ.js"></script>
+<script src="incy.js"></script>
+<script src="extra.js"></script>
+<script src="layout.js"></script>
+<script src="page-support.js"></script>
+<script>
+  DJARB.initLayout({ page: 'support', title: 'Панель поддержки — DJARB VPN', crumbTitle: 'Поддержка' });
+  DJARB.initSupportPage();
+</script>
+</body>
+</html>
