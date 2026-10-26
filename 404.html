@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#030712">
+<title>Страница не найдена — DJARB VPN</title>
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<style>
+  :root{--bg:#030712;--surface:#0F172A;--border:#334155;--text:#F1F5F9;--dim:#94A3B8;--accent:#06B6D4;color-scheme:dark light}
+  @media (prefers-color-scheme:light){:root{--bg:#F8FAFC;--surface:#fff;--border:#E2E8F0;--text:#0F172A;--dim:#64748B;--accent:#0891B2}}
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100dvh;display:grid;place-items:center;padding:calc(20px + env(safe-area-inset-top)) 20px calc(20px + env(safe-area-inset-bottom));background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55}
+  main{width:100%;max-width:460px;text-align:center}
+  .code{font:700 clamp(4rem,22vw,7rem)/1 'Space Grotesk',system-ui,sans-serif;background:linear-gradient(135deg,#06B6D4,#8B5CF6,#EC4899);-webkit-background-clip:text;background-clip:text;color:transparent}
+  h1{font-size:1.35rem;margin:6px 0 8px}
+  p{color:var(--dim);margin:0 0 22px}
+  .log{font:.8rem/1.5 ui-monospace,Menlo,monospace;text-align:left;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:12px 14px;margin:0 0 22px;overflow-wrap:anywhere}
+  .row{display:grid;gap:10px}
+  a{display:flex;align-items:center;justify-content:center;min-height:48px;border-radius:14px;text-decoration:none;font-weight:700;border:1px solid var(--border);color:var(--text);background:var(--surface)}
+  a.p{background:var(--accent);border-color:var(--accent);color:#04140F}
+</style>
+</head>
+<body>
+<main>
+  <div class="code">404</div>
+  <h1>Такой страницы нет</h1>
+  <p>Ссылка устарела или в адресе опечатка. Это не проблема вашего VPN.</p>
+  <div class="log" id="log">GET <span id="path"></span> → 404 not found</div>
+  <div class="row">
+    <a class="p" href="index.html">На главную</a>
+    <a href="diag.html">Открыть диагностику</a>
+    <a href="fix.html">VPN не работает</a>
+  </div>
+</main>
+<script>document.getElementById('path').textContent = location.pathname;</script>
+</body>
+</html>

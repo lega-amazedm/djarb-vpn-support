@@ -22,16 +22,5 @@ DJARB.initSupportPage = function () {
   // Search across the whole catalog (VLESS + Happ + Incy) right from the
   // support dashboard, so the team can find any known error in one place.
   DJARB.mountFilter('supportFilter', 'supportCount', 'supportCatalog', items);
-  document.querySelectorAll('.filter-chip').forEach(function (chip) {
-    chip.addEventListener('click', function () {
-      const sev = this.dataset.sev;
-      document.querySelectorAll('.filter-chip').forEach(function (c) { c.classList.remove('active'); });
-      if (sev) {
-        this.classList.add('active');
-        DJARB.setSeverityFilter(sev);
-      } else {
-        DJARB.setSeverityFilter(null);
-      }
-    });
-  });
+  DJARB.bindSeverityChips();
 };

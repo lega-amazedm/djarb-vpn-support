@@ -13,6 +13,31 @@ DJARB.mergeExtras = function () {
   merge('VLESS', 'VLESS_EXTRA');
   merge('HAPP', 'HAPP_EXTRA');
   merge('INCY', 'INCY_EXTRA');
+  DJARB.cleanCatalog();
+};
+
+/* Quality gate: в базе были ~275 автогенерированных заглушек вида
+   «Проверьте X. Включите X. Обновите приложение.» и дубли id. Они не
+   удаляются из файлов, но не попадают в интерфейс и поиск. */
+DJARB.NOT_RELEVANT = ['v-esp-proto', 'v-dccp-proto', 'v-sctp-block'];
+DJARB.isFiller = function (it) {
+  if (!it || !it.id) return true;
+  if (DJARB.NOT_RELEVANT.indexOf(it.id) !== -1) return true;
+  if (/^i-notification-(?!stuck$)/.test(it.id)) return true;
+  if (it.log || /^(vx|hx|ix)-/.test(it.id)) return false;
+  const steps = it.fix || [];
+  const avg = steps.reduce((a, s) => a + s.length, 0) / Math.max(steps.length, 1);
+  return (it.cause || '').length < 80 && avg < 58;
+};
+DJARB.cleanCatalog = function () {
+  ['VLESS', 'HAPP', 'INCY'].forEach(function (key) {
+    const seen = new Set();
+    DJARB[key] = (DJARB[key] || []).filter(function (it) {
+      if (!it || !it.id || seen.has(it.id) || DJARB.isFiller(it)) return false;
+      seen.add(it.id);
+      return true;
+    });
+  });
 };
 
 DJARB.allItems = function () {
@@ -51,6 +76,12 @@ DJARB.itemHtml = function (it) {
               <ol class="fix-list">
                 ${(it.fix || []).map(step => `<li>${step}</li>`).join('')}
               </ol>
+              <div class="item-actions" data-id="${it.id}">
+                <button type="button" class="yes" data-act="yes">👍 Помогло</button>
+                <button type="button" class="no" data-act="no">👎 Не помогло</button>
+                <button type="button" data-act="link">🔗 Ссылка</button>
+                <p class="item-feedback" hidden></p>
+              </div>
             </div>
           </div>
         </div>`;
@@ -168,7 +199,11 @@ DJARB.mountFilter = function (inputId, countId, containerId, items) {
         <div class="no-results">
           <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           <h4>Ничего не найдено</h4>
-          <p>Попробуйте другие ключевые слова или сбросьте фильтры</p>
+          <p>Попробуйте другие слова или сбросьте фильтры. Можно описать проблему своими словами в диагностике.</p>
+          <div class="row">
+            <button type="button" onclick="DJARB.resetFilter && DJARB.resetFilter()">Сбросить фильтры</button>
+            <a href="diag.html">Открыть диагностику</a>
+          </div>
         </div>`;
       return;
     }
@@ -191,7 +226,10 @@ DJARB.mountFilter = function (inputId, countId, containerId, items) {
   };
   
   DJARB.bindCatalogOnce();
-  if (input) input.addEventListener('input', apply);
+  if (input) {
+    let t = null;
+    input.addEventListener('input', function () { clearTimeout(t); t = setTimeout(apply, 120); });
+  }
   apply();
   
   // Reset function
@@ -225,4 +263,26 @@ DJARB.renderSteps = function (containerId, steps) {
           <p>${s.text}</p>
         </div>
       </div>`).join('');
+};
+
+/* Один обработчик для кнопок «Критичные / Важные / Информация».
+   Раньше на каждой странице был свой, и кнопка могла подсвечиваться
+   включённой, когда фильтр уже снят. */
+DJARB.bindSeverityChips = function () {
+  const chips = Array.prototype.slice.call(document.querySelectorAll('.filter-chip'));
+  chips.forEach(function (chip) {
+    chip.setAttribute('aria-pressed', 'false');
+    chip.addEventListener('click', function () {
+      const sev = this.dataset.sev;
+      const wasActive = this.classList.contains('active');
+      chips.forEach(function (c) { c.classList.remove('active'); c.setAttribute('aria-pressed', 'false'); });
+      if (sev && !wasActive) {
+        this.classList.add('active');
+        this.setAttribute('aria-pressed', 'true');
+        DJARB.setSeverityFilter(sev);
+      } else {
+        DJARB.setSeverityFilter(null);
+      }
+    });
+  });
 };

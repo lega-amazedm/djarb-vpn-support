@@ -301,12 +301,17 @@ DJARB.bindContentProtection = function () {
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2200);
   }
+  const coarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
   document.addEventListener('contextmenu', function (e) {
+    if (e.target.closest && e.target.closest('input, textarea, .item-log')) return;
     e.preventDefault();
-    showToast('Копирование содержимого сайта запрещено');
+    // на телефоне долгое нажатие вызывает contextmenu — не показываем навязчивый тост
+    if (!coarse) showToast('Копирование содержимого сайта запрещено');
   });
   document.addEventListener('selectstart', function (e) {
-    if (e.target.closest('input, textarea, [contenteditable="true"]')) return;
+    const el = e.target && (e.target.nodeType === 3 ? e.target.parentElement : e.target);
+    // строки логов оставляем выделяемыми — их нужно присылать в поддержку
+    if (el && el.closest && el.closest('input, textarea, [contenteditable="true"], .item-log')) return;
     e.preventDefault();
   });
   document.addEventListener('dragstart', function (e) {

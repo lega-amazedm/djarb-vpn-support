@@ -2,52 +2,79 @@ window.DJARB = window.DJARB || {};
 
 // Intelligent keyword matching for natural language processing
 DJARB.KEYWORD_MAP = {
-  // Connection issues
-  'не подключается': ['v-conn-refused', 'v-conn-reset', 'v-deadline', 'i-clock', 'h-test-timeout'],
-  'соединение оборвалось': ['v-conn-reset', 'v-random-drops', 'h-background-drop'],
-  'нет интернета': ['h-connects-no-internet', 'i-routing-loop', 'v-tunnel-full'],
-  'медленно': ['v-server-overload', 'v-throttle-speed', 'v-mtu', 'v-packet-loss-high'],
-  'таймаут': ['v-deadline', 'v-conn-reset', 'h-test-timeout'],
-  
-  // Application issues
+  // Подключение (ключи — только в нижнем регистре: запрос приводится к нижнему)
+  'не подключается': ['v-conn-refused', 'v-conn-reset', 'v-deadline', 'i-clock', 'h-test-timeout', 'vx-timeout-handshake'],
+  'соединение оборвалось': ['v-conn-reset', 'v-random-drops', 'h-background-drop', 'vx-16kb-cut'],
+  'нет интернета': ['h-connects-no-internet', 'i-routing-loop', 'v-tunnel-full', 'vx-android-private-dns', 'vx-two-vpns'],
+  'медленно': ['vx-speed-low', 'v-server-overload', 'v-throttle-speed', 'v-mtu', 'v-packet-loss-high'],
+  'скорость': ['vx-speed-low', 'v-throttle-speed', 'v-server-overload'],
+  'пинг': ['vx-ping-high', 'vx-ping-zero', 'h-ping-false'],
+  'лаги': ['vx-ping-high', 'vx-youtube-quic'],
+  'таймаут': ['vx-timeout-handshake', 'v-deadline', 'v-conn-reset', 'h-test-timeout'],
+
+  // Приложения
   'вылетает': ['h-crash-launch', 'i-test-fail-server'],
   'не запускается': ['h-crash-launch', 'i-connect-disabled'],
-  'фон': ['h-background-drop', 'i-autoconnect', 'i-protected-apps-freeze'],
-  'батарея': ['h-background-drop', 'i-battery-drain'],
-  'уведомление': ['h-notify-missing', 'i-notification-stuck'],
-  
-  // Import/subscription issues
-  'не импортируется': ['h-import', 'i-import', 'h-invalid-sub-url'],
-  'подписка': ['h-sub-not-updating', 'i-subscription-update', 'h-profiles-lost'],
-  'qr код': ['h-qr-camera-fail', 'i-qr-camera-fail'],
-  'ссылка': ['h-invalid-sub-url', 'i-subscription-import'],
-  
-  // VLESS/REALITY specific
-  'REALITY': ['v-reality-invalid', 'v-reality-dest-down', 'v-reality-version'],
-  'TLS': ['v-tls-first-record', 'v-tls-wrong-version', 'v-cert'],
+  'фон': ['vx-android-doze', 'h-background-drop', 'i-autoconnect', 'ix-android-battery'],
+  'батарея': ['hx-android-battery', 'ix-android-battery', 'hx-ios-low-power', 'i-battery-drain'],
+  'уведомление': ['hx-notif-denied', 'ix-notif-android13', 'h-notify-missing', 'i-notification-stuck'],
+  'блокировк': ['hx-ios-low-power', 'ix-ios-slow-lock', 'vx-android-doze'],
+
+  // Импорт и подписка
+  'не импортируется': ['vx-msg-broken-link', 'hx-import-file', 'ix-import-file', 'h-import', 'i-import', 'h-invalid-sub-url'],
+  'подписка': ['vx-sub-https-redirect', 'vx-config-regenerated', 'h-sub-not-updating', 'h-profiles-lost'],
+  'qr': ['hx-qr-fail', 'i-qr-camera-fail'],
+  'ссылка': ['vx-msg-broken-link', 'vx-bad-scheme', 'h-invalid-sub-url'],
+  'файл': ['hx-import-file', 'ix-import-file'],
+  'устройств': ['vx-device-limit', 'ix-device-limit', 'v-multi-device-kick'],
+  'лимит': ['vx-device-limit', 'ix-device-limit', 'v-quota'],
+  'бот': ['hx-tg-bot-config', 'ix-bot-config-expired', 'vx-config-regenerated'],
+  'конфиг': ['vx-config-regenerated', 'vx-json-parse', 'hx-import-file'],
+
+  // VLESS / REALITY
+  'reality': ['v-reality-invalid', 'v-reality-dest-down', 'v-reality-version'],
+  'tls': ['v-tls-first-record', 'v-tls-wrong-version', 'v-cert'],
   'сертификат': ['v-cert', 'v-certificate-revoked'],
-  'SNI': ['v-sni-empty', 'v-reality-fingerprint'],
-  'UUID': ['v-invalid-user', 'v-access-expired'],
-  
-  // Device-specific
-  'iphone': ['h-ios-profile', 'h-warp-conflict'],
-  'ios': ['h-ios-profile', 'h-warp-conflict'],
-  'android': ['h-parental-mdm-block', 'i-protected-apps-freeze'],
-  'windows': ['h-macos-permission', 'h-system-proxy-conflict'],
-  'mac': ['h-macos-permission', 'h-system-proxy-conflict'],
+  'sni': ['v-sni-empty', 'v-tls-fingerprint-mismatch', 'vx-whitelist-mobile'],
+  'uuid': ['v-uuid-empty', 'v-invalid-user', 'v-access-expired'],
+  'json': ['vx-json-parse'],
+
+  // Устройства
+  'iphone': ['hx-ios-vpn-denied', 'h-ios-profile', 'vx-ios-wifi-assist', 'vx-ios-private-relay', 'hx-ios-not-in-store'],
+  'ios': ['hx-ios-vpn-denied', 'h-ios-profile', 'vx-ios-wifi-assist', 'ix-ios-first-run'],
+  'android': ['vx-android-doze', 'hx-android-battery', 'vx-android-private-dns', 'hx-android-always-on'],
+  'xiaomi': ['hx-android-battery', 'ix-android-battery', 'vx-android-doze'],
+  'redmi': ['hx-android-battery', 'ix-android-battery'],
+  'samsung': ['hx-android-battery', 'ix-android-battery', 'vx-android-doze'],
+  'windows': ['hx-win-admin-tun', 'ix-win-admin', 'hx-win-smartscreen', 'hx-win-after-sleep', 'h-system-proxy-conflict'],
+  'mac': ['hx-mac-gatekeeper', 'ix-mac-open-anyway', 'hx-mac-extension', 'h-macos-permission'],
   'linux': ['v-ipv6-only-net', 'v-dns-hijack'],
-  
-  // Network issues
-  'wi-fi': ['v-captive-portal', 'v-mobile-only'],
-  'мобильный': ['v-mobile-only', 'v-throttle-speed'],
-  'провайдер': ['v-ip-blacklisted', 'v-corp-firewall', 'v-geo-block'],
-  'роутер': ['v-random-drops', 'v-heartbeat-fail'],
-  
-  // Common symptoms
-  'красный': ['h-test-timeout', 'i-test-fail-server', 'v-conn-refused'],
+
+  // Сеть и сервисы
+  'wi-fi': ['v-captive-portal', 'vx-router-dns', 'vx-ios-wifi-assist'],
+  'вайфай': ['v-captive-portal', 'vx-router-dns'],
+  'мобильн': ['vx-whitelist-mobile', 'v-mobile-only', 'v-throttle-speed'],
+  'lte': ['vx-whitelist-mobile', 'vx-16kb-cut'],
+  'белые списки': ['vx-whitelist-mobile'],
+  'провайдер': ['vx-16kb-cut', 'v-ip-blacklisted', 'v-corp-firewall', 'v-geo-block'],
+  'оператор': ['vx-whitelist-mobile', 'vx-16kb-cut'],
+  'роутер': ['vx-router-dns', 'v-random-drops', 'v-heartbeat-fail'],
+  'банк': ['vx-banking-app', 'vx-ru-sites'],
+  'госуслуги': ['vx-banking-app', 'vx-ru-sites'],
+  'российские сайты': ['vx-ru-sites', 'vx-banking-app'],
+  'телеграм': ['vx-telegram-own-proxy'],
+  'telegram': ['vx-telegram-own-proxy'],
+  'ютуб': ['vx-youtube-quic', 'vx-speed-low'],
+  'youtube': ['vx-youtube-quic', 'vx-speed-low'],
+  'видео': ['vx-youtube-quic'],
+  'капча': ['vx-captcha-loop'],
+  'другой vpn': ['vx-two-vpns', 'ix-tun-conflict'],
+
+  // Общие симптомы
+  'красный': ['vx-ping-zero', 'h-test-timeout', 'i-test-fail-server', 'v-conn-refused'],
   'ошибка': ['v-conn-refused', 'v-invalid-user', 'h-test-timeout'],
-  'работает': ['v-mobile-only', 'v-captive-portal'],
-  'не работает': ['h-connects-no-internet', 'i-routing-loop']
+  'работает': ['vx-whitelist-mobile', 'v-mobile-only', 'v-captive-portal'],
+  'не работает': ['h-connects-no-internet', 'i-routing-loop', 'vx-two-vpns']
 };
 
 DJARB.intelligentSearch = function(query) {

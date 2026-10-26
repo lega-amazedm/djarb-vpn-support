@@ -10,7 +10,7 @@
     --accent-dim:#0891B2;
     --accent-2:#8B5CF6;
     --accent-3:#EC4899;
-    --accent-4:#F43E5;
+    --accent-4:#F43F5E;
     --warn:#F59E0B;
     --err:#EF4444;
     --ok:#10B981;
@@ -43,7 +43,7 @@
   :root[data-theme="dark"]{
     --bg:#030712; --surface:#0F172A; --surface-2:#1E293B; --border:#334155;
     --text:#F1F5F9; --text-dim:#94A3B8; --text-faint:#64748B;
-    --accent:#06B6D4; --accent-dim:#0891B2; --accent-2:#8B5CF6; --accent-3:#EC4899; --accent-4:#F43E5;
+    --accent:#06B6D4; --accent-dim:#0891B2; --accent-2:#8B5CF6; --accent-3:#EC4899; --accent-4:#F43F5E;
   }
   :root[data-theme="light"]{
     --bg:#F8FAFC; --surface:#FFFFFF; --surface-2:#F1F5F9; --border:#E2E8F0;

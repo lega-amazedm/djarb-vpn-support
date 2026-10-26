@@ -7,9 +7,20 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#030712">
+<meta name="color-scheme" content="dark light">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="DJARB">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="mobile.css">
 </head>
 <body data-page="support">
+<noscript><div style="padding:16px;margin:12px;border:1px solid #F59E0B;border-radius:12px;font-family:sans-serif;background:#fff8e6;color:#1f2937">Для работы сайта нужен JavaScript. Включите его в настройках браузера и обновите страницу.</div></noscript>
 <div id="djarbLoginGate"></div>
 
 <div id="siteContent">
@@ -301,7 +312,9 @@
 <script src="happ.js"></script>
 <script src="incy.js"></script>
 <script src="extra.js"></script>
+<script src="more-errors.js"></script>
 <script src="layout.js"></script>
+<script src="mobile.js"></script>
 <script src="page-support.js"></script>
 <script>
   DJARB.initLayout({ page: 'support', title: 'Панель поддержки — DJARB VPN', crumbTitle: 'Поддержка' });
